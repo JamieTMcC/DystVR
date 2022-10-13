@@ -9,13 +9,14 @@ public class FlashLight_Toggle : MonoBehaviour
     public GameObject Light1;
     public GameObject Light2;
     public GameObject Light3;
-
+    AudioSource audioData;
 
     // Start is called before the first frame update
     void Start()
     {
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
         grabbable.activated.AddListener(ToggleLight);
+        audioData = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,9 +41,7 @@ public class FlashLight_Toggle : MonoBehaviour
                 i.SetActive(true);
                 };
         };
-
-
-
+        audioData.Play(0);
     }
 }   
 
