@@ -13,7 +13,8 @@ public class BurstFireOnActivate : MonoBehaviour
     public AudioClip clip1;
     public AudioClip clip2;
     public bool burstmode = false;
-    public XRGrabInteractable grabbable;
+    XRGrabInteractable grabbable;
+    public GameObject MuzzleFlash;
     // Start is called before the first frame update
 
 
@@ -26,16 +27,20 @@ public class BurstFireOnActivate : MonoBehaviour
 
 
     public void fire(ActivateEventArgs arg){
+        MuzzleFlash.SetActive(true);
+        Invoke("MuzzleFlashTimeOut",0.1f);
         if(burstmode){
             burst();
         }else{
             FireBullet();
         }
     }
+
+    public void MuzzleFlashTimeOut(){
+
+        MuzzleFlash.SetActive(false);
+    }
     void Update(){
-        Debug.Log(("grabbable is..."));
-        Debug.Log(grabbable.isSelected);
-        Debug.Log(Input.GetButtonDown("XRI_Left_PrimaryButton") || Input.GetButtonDown("XRI_Right_PrimaryButton"));
         if(grabbable.isSelected && (Input.GetButtonDown("XRI_Left_PrimaryButton") || Input.GetButtonDown("XRI_Right_PrimaryButton"))){
             burstmode = !burstmode;
             audioData.PlayOneShot(clip2);
