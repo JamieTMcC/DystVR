@@ -64,7 +64,6 @@ public class BurstFireOnActivate : MonoBehaviour
 
         GameObject spawnedBullet = Instantiate(bullet);
         spawnedBullet.transform.position = spawnPoint.position;
-        Debug.Log(rotations[0]);
         spawnedBullet.transform.eulerAngles  = spawnPoint.transform.eulerAngles;
         spawnedBullet.transform.Rotate(rotationToAdd);
         spawnedBullet.GetComponent<Rigidbody>().velocity  = (spawnPoint.forward+rotationToAdd) * fireSpeed;
@@ -77,7 +76,6 @@ public class BurstFireOnActivate : MonoBehaviour
         GameObject spawnedBullet = Instantiate(bullet);
         spawnedBullet.transform.position = spawnPoint.position;
         spawnedBullet.GetComponent<Rigidbody>().velocity  = spawnPoint.forward * fireSpeed;
-        Debug.Log(spawnPoint.forward);
         audioData.Play(0);
         Destroy(spawnedBullet, 5);
 
