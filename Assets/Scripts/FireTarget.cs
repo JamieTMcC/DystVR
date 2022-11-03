@@ -12,14 +12,11 @@ public class FireTarget : MonoBehaviour
     public int numberOfTargets;
     public GameObject flash;
     public GameObject smoke;
+    public int rateOfFire = 3;
     // Start is called before the first frame update
     void Start()
     {
         audioData = GetComponent<AudioSource>();
-        StartLoop();
-    }
-
-    public void StartLoop(){
         StartCoroutine(FireTargets());
     }
 
@@ -32,10 +29,10 @@ public class FireTarget : MonoBehaviour
             spawnedTarget.transform.position = spawnPoint.position;
             spawnedTarget.GetComponent<Rigidbody>().velocity  = spawnPoint.forward * fireSpeed;
             audioData.Play(0);
-            Destroy(spawnedTarget, 10);
+            Destroy(spawnedTarget, 2 * rateOfFire);
             yield return new WaitForSeconds(0.2f);
             flash.SetActive(false);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(rateOfFire);
         }
         yield return new WaitForSeconds(5);
         Destroy(smoke);
