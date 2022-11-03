@@ -30,7 +30,6 @@ public class CannonMovement : MonoBehaviour
         }
         CannonBarrel.transform.Rotate(speed,0f,0f,Space.Self);
         i = i + incrementor;
-        Debug.Log(i);
     }
 
 }
