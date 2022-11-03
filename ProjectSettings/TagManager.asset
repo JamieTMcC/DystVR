@@ -7,6 +7,9 @@ TagManager:
   - Left Hand
   - Right Hand
   - Target
+  - Centre
+  - InnerRing
+  - OuterRing
   layers:
   - Default
   - TransparentFX
