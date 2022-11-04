@@ -27,7 +27,7 @@ public class HitscanShooting : MonoBehaviour
         muzzleFlash.SetActive(true);
         aimCollider.SetActive(true);
         Invoke("MuzzleFlashTimeOut",0.1f);
-        Invoke("TurnOffCollider",0.2f);
+        Invoke("TurnOffCollider",0.02f);
     }
 
     public void MuzzleFlashTimeOut(){

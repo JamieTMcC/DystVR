@@ -3,52 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Threading;
-
+using System;
 public class CollideAndDestroy : MonoBehaviour
 {
 
     public AudioSource Audiodata;
 
-    static ReaderWriterLock locker = new ReaderWriterLock();
-
-    public string Keyword = "";
+    private string time;
+    void Start(){
+        using(StreamWriter writetext = new StreamWriter("write.txt")){
+            writetext.WriteLine("---------- New File ----------");
+        }
+    }
 
     public void OnTriggerEnter(Collider collision) {
+        if(collision.gameObject.tag != "Untagged"){
+            Audiodata.Play(0);
+            using(StreamWriter writetext = new StreamWriter("write.txt", true))
+                {
+                writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
+                }
 
-    using(StreamWriter writetext = new StreamWriter("write.txt"))
-        {
-
-        Audiodata.Play(0);
-
-
-        if(collision.gameObject.tag == "Centre"){
-
-            Keyword = "Centre";
+            Debug.Log(collision.gameObject.transform.parent.gameObject.tag);
             Destroy(collision.gameObject.transform.parent.gameObject);
-            break;
-
-        }else if (collision.gameObject.tag == "InnerRing"){
-            
-            Debug.Log("Hello");
-            Keyword = "Inner Ring";
-            Destroy(collision.gameObject.transform.parent.gameObject);
-            break;
-
-        }else if (collision.gameObject.tag == "OuterRing"){
-
-            Keyword = "Outer Ring";
-            Destroy(collision.gameObject);
-            break;
         }
 
-
-        try{
-            locker.AcquireWriterLock(int.MaxValue);
-            writetext.WriteLine(Keyword);
-        }finally
-        {
-            locker.ReleaseWriterLock();
-        }
-        }
     }
 }
