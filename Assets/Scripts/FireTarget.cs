@@ -13,10 +13,9 @@ public class FireTarget : MonoBehaviour
     public GameObject flash;
     public GameObject smoke;
     public int rateOfFire = 3;
-    // Start is called before the first frame update
-    void Start()
-    {
-        audioData = GetComponent<AudioSource>();
+    public GameObject StartButton;
+
+    public void main(){
         StartCoroutine(FireTargets());
     }
 
@@ -35,6 +34,7 @@ public class FireTarget : MonoBehaviour
             yield return new WaitForSeconds(rateOfFire);
         }
         yield return new WaitForSeconds(5);
-        Destroy(smoke);
+        smoke.SetActive(false);
+        StartButton.SetActive(true);
     }
 }
