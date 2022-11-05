@@ -26,6 +26,11 @@ public class CollideAndDestroy : MonoBehaviour
     }
 
     public void OnTriggerEnter(Collider collision) {
+        if(collision.gameObject.tag == "Right Hand" ^ collision.gameObject.tag == "Left Hand"){
+            return;
+        }
+
+
         if(collision.gameObject.tag == "StartButton"){
 
             script = Cannon.GetComponent<FireTarget>();
@@ -78,10 +83,10 @@ public class CollideAndDestroy : MonoBehaviour
                 DebugText.text += DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag + "\n";
             }
             Audiodata.Play(0);
-            using(StreamWriter writetext = new StreamWriter("write.txt", true))
-                {
-                writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
-                }
+            //using(StreamWriter writetext = new StreamWriter("write.txt", true))
+              //  {
+               // writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
+                //}
 
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
