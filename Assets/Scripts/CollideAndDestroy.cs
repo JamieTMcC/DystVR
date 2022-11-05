@@ -10,9 +10,12 @@ public class CollideAndDestroy : MonoBehaviour
 
     public AudioSource Audiodata;
     public GameObject Cannon;
-    public TMP_Text ScoreText;
+    public TMP_Text ScoreText,DebugText;
+    public GameObject AssistButton,DebugButton;
     private FireTarget script;
+    public Material VisibleMaterial,InvisibleMaterial;
     public int score = 0;
+    private bool AssistMode,DebugMode;
 
 
     private string time;
@@ -23,13 +26,46 @@ public class CollideAndDestroy : MonoBehaviour
     }
 
     public void OnTriggerEnter(Collider collision) {
-        if(collision.gameObject.tag == "ShootableButton"){
+        if(collision.gameObject.tag == "StartButton"){
+
             script = Cannon.GetComponent<FireTarget>();
-            script.main();
+            script.main(AssistMode, DebugMode);
             collision.gameObject.transform.parent.gameObject.SetActive(false);
+            AssistButton.SetActive(false);
+            DebugButton.SetActive(false);
             return;
         }
 
+        if(collision.gameObject.tag == "AssistButton" ^ collision.gameObject.tag == "DebugButton"){
+            Debug.Log(collision.gameObject.transform.childCount);
+            var ButtonRenderer = collision.gameObject.transform.GetComponent<Renderer>();
+            
+            switch(collision.gameObject.tag){
+            case "AssistButton":
+                AssistMode = !AssistMode;
+                if(AssistMode){
+                    ButtonRenderer.material.color =  Color.green;
+                }else{
+                    ButtonRenderer.material.color =  Color.red;
+                }
+                break;
+            case "DebugButton":
+                DebugMode = !DebugMode;
+                if(DebugMode){
+                    this.gameObject.transform.GetComponent<Renderer>().material = VisibleMaterial; 
+                    ButtonRenderer.material.color =  Color.green;
+                    DebugText.text = "Debug:\n";
+                }else{
+                    this.gameObject.transform.GetComponent<Renderer>().material = InvisibleMaterial;
+                    ButtonRenderer.material.color =  Color.red;
+                    DebugText.text = "";
+                }
+                break;
+            }
+            return;
+        }
+
+        
 
 
 
@@ -38,6 +74,9 @@ public class CollideAndDestroy : MonoBehaviour
         if(collision.gameObject.tag != "Untagged"){
             score++;
             ScoreText.text = "Score: " + score.ToString();
+            if(DebugMode){
+                DebugText.text += DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag + "\n";
+            }
             Audiodata.Play(0);
             using(StreamWriter writetext = new StreamWriter("write.txt", true))
                 {

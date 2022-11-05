@@ -10,7 +10,9 @@ TagManager:
   - Centre
   - InnerRing
   - OuterRing
-  - ShootableButton
+  - StartButton
+  - AssistButton
+  - DebugButton
   layers:
   - Default
   - TransparentFX
