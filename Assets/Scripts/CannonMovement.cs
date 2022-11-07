@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CannonMovement : MonoBehaviour
 {
@@ -9,8 +10,22 @@ public class CannonMovement : MonoBehaviour
 
     public float speed = 1.0f;
     public float maxVariation = 10.0f;
-    
+    public Scene PistolGame;
+    public bool horizontal = false;
+
     private float i = 0.0f;
+
+
+    void Start(){
+        if(SceneManager.GetActiveScene() == PistolGame){
+            horizontal = false;
+        }else{
+            horizontal = true;
+        }
+
+
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -18,7 +33,11 @@ public class CannonMovement : MonoBehaviour
         if(i > maxVariation || i < -1 * maxVariation){
             speed = speed * -1;
         }
-        CannonBarrel.transform.Rotate(speed,0f,0f,Space.Self);
+        if(horizontal){
+            CannonBarrel.transform.Rotate(0f,0f,speed,Space.Self);
+        }else{
+            CannonBarrel.transform.Rotate(speed,0f,0f,Space.Self);
+        }
         i = i + speed;
     }
 
