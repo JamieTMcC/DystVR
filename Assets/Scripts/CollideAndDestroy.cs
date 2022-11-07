@@ -16,11 +16,24 @@ public class CollideAndDestroy : MonoBehaviour
     public Material VisibleMaterial,InvisibleMaterial;
     public int score = 0;
     private bool AssistMode,DebugMode;
-
-
+    private string path;
     private string time;
+
     void Start(){
-        using(StreamWriter writetext = new StreamWriter("write.txt")){
+
+        path = Application.persistentDataPath + "/experimentdata/";
+        int iteration;
+        using(StreamReader readtext = new StreamReader(path + "iteration.txt")){
+            iteration = Int32.Parse(readtext.ReadLine());
+        }
+        iteration++;
+        using(StreamWriter writetext = new StreamWriter(path + "iteration.txt")){
+            writetext.WriteLine(iteration.ToString());
+        }
+
+        path += iteration.ToString() + ".txt";
+
+        using(StreamWriter writetext = new StreamWriter(path)){
             writetext.WriteLine("---------- New File ----------");
         }
     }
@@ -42,7 +55,6 @@ public class CollideAndDestroy : MonoBehaviour
         }
 
         if(collision.gameObject.tag == "AssistButton" ^ collision.gameObject.tag == "DebugButton"){
-            Debug.Log(collision.gameObject.transform.childCount);
             var ButtonRenderer = collision.gameObject.transform.GetComponent<Renderer>();
             
             switch(collision.gameObject.tag){
@@ -59,7 +71,7 @@ public class CollideAndDestroy : MonoBehaviour
                 if(DebugMode){
                     this.gameObject.transform.GetComponent<Renderer>().material = VisibleMaterial; 
                     ButtonRenderer.material.color =  Color.green;
-                    DebugText.text = "Debug:\n";
+                    DebugText.text += "Debug:\n";
                 }else{
                     this.gameObject.transform.GetComponent<Renderer>().material = InvisibleMaterial;
                     ButtonRenderer.material.color =  Color.red;
@@ -83,10 +95,10 @@ public class CollideAndDestroy : MonoBehaviour
                 DebugText.text += DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag + "\n";
             }
             Audiodata.Play(0);
-            //using(StreamWriter writetext = new StreamWriter("write.txt", true))
-              //  {
-               // writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
-                //}
+            using(StreamWriter writetext = new StreamWriter(path, true))
+            {
+               writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
+            }
 
             Destroy(collision.gameObject.transform.parent.gameObject);
         }

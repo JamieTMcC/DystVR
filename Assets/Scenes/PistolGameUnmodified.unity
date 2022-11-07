@@ -3067,7 +3067,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 61989579}
   fireSpeed: 15
   audioData: {fileID: 1446099697}
-  numberOfTargets: 15
+  numberOfTargets: 3
   flash: {fileID: 1294097797}
   smoke: {fileID: 1330445032}
   rateOfFire: 3
