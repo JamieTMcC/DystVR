@@ -6,11 +6,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HitscanShooting : MonoBehaviour
 {
-    AudioSource audioData;
+    private AudioSource audioData;
     public AudioClip clip1;
-    XRGrabInteractable grabbable;
-    public GameObject muzzleFlash;
-    public GameObject aimCollider;
+    private XRGrabInteractable grabbable;
+    private GameObject muzzleFlash, aimCollider;
     // Start is called before the first frame update
 
 
@@ -18,6 +17,10 @@ public class HitscanShooting : MonoBehaviour
     {
         audioData = GetComponent<AudioSource>();
         grabbable = GetComponent<XRGrabInteractable>();
+        muzzleFlash = GameObject.FindWithTag("PistolFlash");
+        aimCollider = GameObject.FindWithTag("AimCylinder");
+        muzzleFlash.SetActive(false);
+        aimCollider.SetActive(false);
         grabbable.activated.AddListener(Fire);
     }
 

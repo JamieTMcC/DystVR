@@ -6,6 +6,7 @@ public class ResetGunPosition : MonoBehaviour
 {
 
     private Vector3 startPosition;
+    public float speed = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class ResetGunPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            transform.position = Vector3.MoveTowards(transform.position,startPosition,1);
+            transform.position = Vector3.MoveTowards(transform.position,startPosition,speed);
         
     }
 }

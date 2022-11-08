@@ -335,11 +335,11 @@ GameObject:
   - component: {fileID: 136268715}
   m_Layer: 9
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: AimCylinder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &136268710
 Transform:
   m_ObjectHideFlags: 0
@@ -428,18 +428,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 136268709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36801abc22b44724e964d24cd4581c28, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d60787d3e057364bb1b1f2210395549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Audiodata: {fileID: 1799138291}
-  Cannon: {fileID: 1384391441}
   ScoreText: {fileID: 1353510774}
   DebugText: {fileID: 1424582132}
-  AssistButton: {fileID: 7636619542607516761}
-  DebugButton: {fileID: 1803288183}
   VisibleMaterial: {fileID: 2100000, guid: f2fcbe2c3b1014f4da2225000874e09e, type: 2}
   InvisibleMaterial: {fileID: 2100000, guid: b40b1988922ea864b97284b787e29bde, type: 2}
-  score: 0
 --- !u!1 &188697385
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,11 +948,11 @@ GameObject:
   - component: {fileID: 306266228}
   m_Layer: 9
   m_Name: MuzzleFlash
-  m_TagString: Untagged
+  m_TagString: PistolFlash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &306266228
 Transform:
   m_ObjectHideFlags: 0
@@ -1313,12 +1308,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 871889687}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &543914254 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 109434732388006827, guid: 65847589f926b734d9eaed6e25f0046b,
-    type: 3}
-  m_PrefabInstance: {fileID: 871889687}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &543914255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,7 +1317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 543914252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d10ddf01588516044ad62d38fff1b3f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 339a8b5c051abc24baee45cf77096f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pinchAnimationAction:
@@ -1337,7 +1326,7 @@ MonoBehaviour:
       m_Name: Pinch Animation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: fe918979-89bd-43e3-b50e-585a306c14e3
+      m_Id: 20aa9eee-ec3b-4d42-a74d-d0b4d021aacc
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1350,14 +1339,14 @@ MonoBehaviour:
       m_Name: Grip Animation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 750fdda7-eba0-474d-b483-b3e388b77c33
+      m_Id: 908bbe8d-3255-4273-9c97-0be49d0ac485
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  handAnimator: {fileID: 543914254}
+  handAnimator: {fileID: 871889688}
 --- !u!1 &573935709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,12 +1477,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 723616854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a066880fc621f654e961eb5939c7136d, type: 3}
+  m_Script: {fileID: 11500000, guid: b3f2c215315d3f64bbe58e1871031096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CannonBarrel: {fileID: 723616854}
-  speed: 0.1
-  maxVariation: 20
+  speed: 1
+  maxVariation: 10
+  horizontal: 0
 --- !u!1 &771613753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1894,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
+--- !u!95 &871889688 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 109434732388006827, guid: 65847589f926b734d9eaed6e25f0046b,
+    type: 3}
+  m_PrefabInstance: {fileID: 871889687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &943327625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2028,7 +2023,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1044548931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d10ddf01588516044ad62d38fff1b3f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 339a8b5c051abc24baee45cf77096f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pinchAnimationAction:
@@ -2037,7 +2032,7 @@ MonoBehaviour:
       m_Name: Pinch Animation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 159d20de-917b-4f5a-906f-daff1af5958a
+      m_Id: 85d3f4a9-a9ff-4c5b-b4d7-323635ea4e24
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -2050,7 +2045,7 @@ MonoBehaviour:
       m_Name: Grip Animation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: ace72642-f1fd-4266-b40e-8863d1d70e74
+      m_Id: dc77cf24-495b-4b24-871f-c958ad37fe7e
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -2097,11 +2092,11 @@ GameObject:
   - component: {fileID: 1294097799}
   m_Layer: 0
   m_Name: MuzzleFlash
-  m_TagString: Untagged
+  m_TagString: CannonFlash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1294097798
 Transform:
   m_ObjectHideFlags: 0
@@ -2279,16 +2274,15 @@ PrefabInstance:
     - target: {fileID: 9159379829572341847, guid: 8369d0a53f6b10346b3da6809285e8ab,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159379829572341847, guid: 8369d0a53f6b10346b3da6809285e8ab,
+        type: 3}
+      propertyPath: m_TagString
+      value: Smoke
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8369d0a53f6b10346b3da6809285e8ab, type: 3}
---- !u!1 &1330445032 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9159379829572341847, guid: 8369d0a53f6b10346b3da6809285e8ab,
-    type: 3}
-  m_PrefabInstance: {fileID: 1330445031}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1330445033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9159379829572341846, guid: 8369d0a53f6b10346b3da6809285e8ab,
@@ -2917,31 +2911,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 81589e606a98e59458cbf7e16491e129, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9670721
+      value: 0.94676334
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 81589e606a98e59458cbf7e16491e129, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.25065973
+      value: 0.3213865
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 81589e606a98e59458cbf7e16491e129, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0072321873
+      value: 0.0028104333
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 81589e606a98e59458cbf7e16491e129, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.043461457
+      value: 0.018494545
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 81589e606a98e59458cbf7e16491e129, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 28.959
+      value: 37.478
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 81589e606a98e59458cbf7e16491e129, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 2.343
+      value: 1.243
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 81589e606a98e59458cbf7e16491e129, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 5.752
+      value: 2.66
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 81589e606a98e59458cbf7e16491e129, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3058,24 +3052,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384391441}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9caa801fcba5ac74f9abc612ae56da8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d8b3fadacfd99240aa563868b0e77e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2486583345833592428, guid: 97f25577880e49445ba58272d3ce4f4a, type: 3}
   spawnPoint: {fileID: 61989579}
-  fireSpeed: 15
-  audioData: {fileID: 1446099697}
-  numberOfTargets: 3
-  flash: {fileID: 1294097797}
-  smoke: {fileID: 1330445032}
+  numberOfTargets: 10
+  fireSpeed: 20
   rateOfFire: 3
-  StartButton: {fileID: 7361959379060155553}
-  AssistButton: {fileID: 7636619542607516761}
-  DebugButton: {fileID: 1803288183}
-  AimCylinder: {fileID: 136268709}
-  DebugText: {fileID: 1424582132}
 --- !u!1 &1621993768
 GameObject:
   m_ObjectHideFlags: 0
@@ -3272,114 +3258,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1697231056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f57b8e334bdec4a912ee7669f5925d, type: 3}
+  m_Script: {fileID: 11500000, guid: b7988d0668f8eab4788671ba0819fff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 573935710}
-  m_Colliders: []
-  m_InteractionLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_InteractionLayers:
-    m_Bits: 1
-  m_SelectMode: 0
-  m_CustomReticle: {fileID: 0}
-  m_FirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Activated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnFirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnLastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectCanceled:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_AttachTransform: {fileID: 0}
-  m_AttachEaseInTime: 0.15
-  m_MovementType: 2
-  m_VelocityDamping: 1
-  m_VelocityScale: 1
-  m_AngularVelocityDamping: 1
-  m_AngularVelocityScale: 1
-  m_TrackPosition: 1
-  m_SmoothPosition: 1
-  m_SmoothPositionAmount: 5
-  m_TightenPosition: 0.5
-  m_TrackRotation: 1
-  m_SmoothRotation: 1
-  m_SmoothRotationAmount: 5
-  m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.25
-  m_ThrowSmoothingCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ThrowVelocityScale: 1.5
-  m_ThrowAngularVelocityScale: 1
-  m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 1
-  m_AttachPointCompatibilityMode: 0
-  leftAttachTransform: {fileID: 1391299201}
-  rightAttachTransform: {fileID: 91339512}
+  clip1: {fileID: 8300000, guid: ceb0113becb4b7a4aa650dc1cf1a9b8b, type: 3}
 --- !u!82 &1697231059
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3514,12 +3396,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1697231056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c677ad1e1ae08c44ab075d18822393cb, type: 3}
+  m_Script: {fileID: 11500000, guid: fe0d725bb61fe6f42946517a089a0d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip1: {fileID: 8300000, guid: ceb0113becb4b7a4aa650dc1cf1a9b8b, type: 3}
-  muzzleFlash: {fileID: 306266227}
-  aimCollider: {fileID: 136268709}
+  speed: 0.2
 --- !u!114 &1697231064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3529,9 +3409,114 @@ MonoBehaviour:
   m_GameObject: {fileID: 1697231056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2395fd57834c9c64891e2889ac7f9a3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b85c07a650794345a162ecf6c9bb8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 1
+  m_SelectMode: 0
+  m_CustomReticle: {fileID: 0}
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectCanceled:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_AttachTransform: {fileID: 0}
+  m_AttachEaseInTime: 0.15
+  m_MovementType: 2
+  m_VelocityDamping: 1
+  m_VelocityScale: 1
+  m_AngularVelocityDamping: 1
+  m_AngularVelocityScale: 1
+  m_TrackPosition: 1
+  m_SmoothPosition: 0
+  m_SmoothPositionAmount: 5
+  m_TightenPosition: 0.5
+  m_TrackRotation: 1
+  m_SmoothRotation: 0
+  m_SmoothRotationAmount: 5
+  m_TightenRotation: 0.5
+  m_ThrowOnDetach: 1
+  m_ThrowSmoothingDuration: 0.25
+  m_ThrowSmoothingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ThrowVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 1
+  m_ForceGravityOnDetach: 0
+  m_RetainTransformParent: 1
+  m_AttachPointCompatibilityMode: 0
+  leftAttachTransform: {fileID: 1391299201}
+  rightAttachTransform: {fileID: 91339512}
 --- !u!1 &1722403079
 GameObject:
   m_ObjectHideFlags: 0
