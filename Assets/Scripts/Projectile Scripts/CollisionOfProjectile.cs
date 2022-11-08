@@ -13,42 +13,55 @@ public class CollisionOfProjectile : MonoBehaviour
     private TMP_Text scoreText;
     private AudioSource audioSource;
     public AudioClip wallSound, goalSound, handSound;
-
     private string path;
 
+    private ScoreManager sm;
+    private PathGenerator pg;
+    
+    private bool gotInGoal = false;
 
 
     void Start(){
         scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
         audioSource = GetComponent<AudioSource>();
-        
-        path = Application.persistentDataPath + "/experimentdata/ProjectileGame/";
-        
-        //Reads a number from a file and increments then writes to number each new user         
-        int iteration;
-        using(StreamReader readtext = new StreamReader(path + "iteration.txt")){
-            iteration = Int32.Parse(readtext.ReadLine());
-        }
-        iteration++;
-        using(StreamWriter writetext = new StreamWriter(path + "iteration.txt")){
-            writetext.WriteLine(iteration.ToString());
-        }
-        path += iteration.ToString() + ".txt";
-
-        using(StreamWriter writetext = new StreamWriter(path)){
-            writetext.WriteLine("---------- New File ----------");
-        }
+        pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
+        sm = GameObject.Find("ScoreText").GetComponent<ScoreManager>();
+        path = pg.getPath();
+        using(StreamWriter writetext = new StreamWriter(path, true))
+        {writetext.WriteLine("New Projectile Created : " + gameObject.GetInstanceID().ToString());}
+        StartCoroutine(DestroyAndCheckScore(6.0f));
     }
 
+    IEnumerator DestroyAndCheckScore(float time){
+        yield return new WaitForSeconds(time);
+        if(gotInGoal){
+            sm.score--;
+        }else{
+            sm.score++;
+        }
+        sm.ScoreDisplay();
+        Destroy(gameObject);
+    }
+
+
+
     void OnCollisionEnter(Collision col){
+        Debug.Log(col.gameObject.tag);
 
         switch(col.gameObject.tag){
-            case "RightHand":
-            case "LeftHand":
+            case "Right Hand":
+            case "Left Hand":
             using(StreamWriter writetext = new StreamWriter(path, true))
-            {writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + "Deflected: " + col.gameObject.tag);}
-            score++;
+            {writetext.WriteLine(gameObject.GetInstanceID().ToString() + " -- " + "Deflected: " + col.gameObject.tag);}
             audioSource.PlayOneShot(handSound);
+            break;
+
+            case "Goal":
+            Debug.Log("Goal");
+            gotInGoal = true;
+            using(StreamWriter writetext = new StreamWriter(path, true))
+            {writetext.WriteLine(gameObject.GetInstanceID().ToString() + " -- " + "Not Deflected: " + col.gameObject.tag);}
+            audioSource.PlayOneShot(goalSound);
             break;
 
 
@@ -58,21 +71,8 @@ public class CollisionOfProjectile : MonoBehaviour
             break;
             
             
-            case "Goal":
-            using(StreamWriter writetext = new StreamWriter(path, true))
-            {writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + "Not Deflected: " + col.gameObject.tag);}
-            score--;
-            audioSource.PlayOneShot(goalSound);
-            break;
+
         }
-        
-        using(StreamWriter writetext = new StreamWriter(path, true))
-            {writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + col.gameObject.tag);}
-        scoreText.text = "Score: " + score.ToString();
-        
-        Destroy(gameObject, 6);
-
-
 
     }
 

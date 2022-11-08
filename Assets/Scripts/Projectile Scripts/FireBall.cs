@@ -48,10 +48,9 @@ public class FireBall : MonoBehaviour
         BlockerR.isTrigger = false;
         float scaleChange = 1.5f/numberOfTargets;
         Vector3 OriginalSize = BlockerL.size;
+        float x = OriginalSize.x;
         float y = OriginalSize.y;
         float z = OriginalSize.z;
-        Debug.Log(y);
-        Debug.Log(z);
         if(DebugMode){
             DebugText.text += "Default Hand Blocker Radius: " + OriginalSize.ToString() + "\n";
             DebugText.text += "numberOfTargets: " + numberOfTargets.ToString() + "\n";
@@ -70,7 +69,7 @@ public class FireBall : MonoBehaviour
             yield return new WaitForSeconds(0.2f);//makes a flash for a fraction of a second 
             flash.SetActive(false);
             yield return new WaitForSeconds(rateOfFire);
-            ModeActions(scaleChange,y,z);
+            ModeActions(scaleChange,x,y,z);
         }
 
 
@@ -82,9 +81,9 @@ public class FireBall : MonoBehaviour
     }
 
 
-    void ModeActions(float scaleChange,float y, float z){
+    void ModeActions(float scaleChange,float x,float y, float z){
         if(AssistMode){
-            BlockerL.size += new Vector3(0,scaleChange*y,scaleChange*z);
+            BlockerL.size += new Vector3(scaleChange*x,scaleChange*y,scaleChange*z);
             BlockerR.size =  BlockerL.size;
             if(DebugMode){
                 DebugText.text += "Hand Blocker size: " + BlockerL.size.ToString() + "\n";

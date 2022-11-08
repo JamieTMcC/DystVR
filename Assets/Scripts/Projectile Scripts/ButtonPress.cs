@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ButtonPress : MonoBehaviour
 {
 
-    private GameObject cannon, FPSCounter, goalZone, buttons;
+    private GameObject cannon, FPSCounter, goalZone, buttons, XROrigin;
+
+    private Vector3 startPosition;
     public Material visible,invisible;
     public bool debugMode, assistMode;
     public GameObject PaddleR,PaddleL;
-
+    public ActionBasedContinuousMoveProvider LocoScript;
     private TMP_Text DebugText;
 
     void Start(){
@@ -19,6 +22,9 @@ public class ButtonPress : MonoBehaviour
         goalZone = GameObject.Find("Goal");
         buttons = GameObject.Find("Buttons");
         DebugText = GameObject.Find("DebugText").GetComponent<TMP_Text>();
+        XROrigin = GameObject.Find("XR Origin");
+        startPosition = GameObject.Find("StartPoint").transform.position;
+        startPosition.y = XROrigin.transform.position.y;
     }
 
 
@@ -30,6 +36,7 @@ public class ButtonPress : MonoBehaviour
             case "StartButton":
                 FireBall script = cannon.GetComponent<FireBall>();
                 buttons.SetActive(false);
+                XROrigin.transform.position = startPosition;
                 script.main(assistMode,debugMode);
                 break;
             case "AssistButton":
