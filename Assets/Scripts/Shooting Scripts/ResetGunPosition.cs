@@ -1,3 +1,6 @@
+/*
+simply resets the gun on the table if the user drops it
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +20,7 @@ public class ResetGunPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            transform.position = Vector3.MoveTowards(transform.position,startPosition,speed);
+        transform.position = Vector3.MoveTowards(transform.position,startPosition,speed);
         
     }
 }

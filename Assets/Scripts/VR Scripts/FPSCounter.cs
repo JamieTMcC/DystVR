@@ -1,3 +1,9 @@
+/*
+Calculates the frames per second every second
+and displays if the object is active
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

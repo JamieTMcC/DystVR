@@ -1,3 +1,6 @@
+/*
+Handles collisions between the projectile fired from the cannon and the hands/walls/floor/goal
+*/
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;

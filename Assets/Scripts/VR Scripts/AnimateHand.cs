@@ -1,3 +1,8 @@
+/*
+Handles the hand animation when trigger or grip is pressed
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

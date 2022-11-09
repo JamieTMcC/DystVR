@@ -1,8 +1,12 @@
+/*
+Handles the collision between the cylinder which comes from the gun
+when the trigger is pressed and the buttons/targets
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Threading;
 using System;
 using TMPro;
 public class CollideAndDestroy : MonoBehaviour

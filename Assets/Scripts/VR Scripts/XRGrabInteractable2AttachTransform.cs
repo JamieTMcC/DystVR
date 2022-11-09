@@ -1,3 +1,8 @@
+/*
+gives 2 different attach transforms for either hand
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

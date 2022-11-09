@@ -1,3 +1,7 @@
+/*
+Handles the visual affects and collider activation of the gun when trigger is pulled
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
