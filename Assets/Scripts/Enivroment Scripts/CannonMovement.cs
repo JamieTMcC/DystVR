@@ -1,3 +1,7 @@
+/*
+This script controlls the movement of a cannon in both scene instances
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +18,6 @@ public class CannonMovement : MonoBehaviour
 
     void Start(){
         StartCoroutine(Move());
-
     }
 
 
