@@ -13,7 +13,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ButtonPress : MonoBehaviour
 {
 
-    private GameObject cannon, FPSCounter, goalZone, buttons, XROrigin;
+    private GameObject cannon, goalZone, buttons, XROrigin;
+    public GameObject FPSCounter;//FPSCounter needs to be disabled at startup and since we run this twice, find can't be used
 
     private Vector3 startPosition;
     public Material visible,invisible;
@@ -24,8 +25,6 @@ public class ButtonPress : MonoBehaviour
 
     void Start(){
         cannon = GameObject.Find("Cannon");
-        FPSCounter = GameObject.Find("FPSCounter");
-        FPSCounter.SetActive(false);
         goalZone = GameObject.Find("Goal");
         buttons = GameObject.Find("Buttons");
         DebugText = GameObject.Find("DebugText").GetComponent<TMP_Text>();
