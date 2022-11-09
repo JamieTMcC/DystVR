@@ -19,6 +19,7 @@ public class ButtonPress : MonoBehaviour
     void Start(){
         cannon = GameObject.Find("Cannon");
         FPSCounter = GameObject.Find("FPSCounter");
+        FPSCounter.SetActive(false);
         goalZone = GameObject.Find("Goal");
         buttons = GameObject.Find("Buttons");
         DebugText = GameObject.Find("DebugText").GetComponent<TMP_Text>();
