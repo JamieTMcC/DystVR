@@ -28,7 +28,7 @@ public class FireTarget : MonoBehaviour
 
     void Start(){
         buttons = GameObject.Find("Buttons");
-        debugText = GameObject.Find("debugText").GetComponent<TMP_Text>();
+        debugText = GameObject.Find("DebugText").GetComponent<TMP_Text>();
         audioData = GetComponent<AudioSource>();
         aimCylinder = GameObject.Find("pistol/Cylinder");
         flash = GameObject.FindWithTag("CannonFlash");

@@ -29,7 +29,6 @@ public class CollideAndDestroy : MonoBehaviour
 
     //2 Different Modes
     private bool AssistMode,DebugMode;
-    private string path;
 
     void Start(){
         cannon = GameObject.Find("Cannon");
@@ -39,7 +38,6 @@ public class CollideAndDestroy : MonoBehaviour
         FPSCounter = GameObject.Find("FPSCounter");
         FPSCounter.SetActive(false);
         pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
-        path = pg.getPath();
     }
 
     public void OnTriggerEnter(Collider collision) {
@@ -108,7 +106,7 @@ public class CollideAndDestroy : MonoBehaviour
                 DebugText.text += DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag + "\n";
             }
             audioData.Play(0);
-            using(StreamWriter writetext = new StreamWriter(path, true))
+            using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
             {
                writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
             }

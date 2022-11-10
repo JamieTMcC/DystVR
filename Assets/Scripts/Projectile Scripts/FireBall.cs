@@ -86,8 +86,10 @@ public class FireBall : MonoBehaviour
 
     void ModeActions(float scaleChange,Vector3 OriginalSize){
         if(AssistMode){
-            BlockerL.size += OriginalSize*scaleChange;
+            Debug.Log("Assist Mode is On");
+            BlockerL.size += new Vector3(OriginalSize.x*scaleChange,OriginalSize.y*scaleChange,OriginalSize.z*scaleChange);
             BlockerR.size =  BlockerL.size;
+            Debug.Log(OriginalSize*scaleChange);
             if(DebugMode){
                 DebugText.text += "Hand Blocker size: " + BlockerL.size.ToString() + "\n";
                 PaddleL.gameObject.transform.localScale = BlockerL.size;

@@ -39,8 +39,6 @@ public class PathGenerator : MonoBehaviour
         }
 
 
-
-
         //Reads a number from a file and increments then writes to number each new user         
         int iteration;
         using(StreamReader readtext = new StreamReader(path + "iteration.txt")){

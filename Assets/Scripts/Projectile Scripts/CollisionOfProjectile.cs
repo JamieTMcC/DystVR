@@ -30,8 +30,7 @@ public class CollisionOfProjectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
         sm = GameObject.Find("ScoreText").GetComponent<ScoreManager>();
-        path = pg.getPath();
-        using(StreamWriter writetext = new StreamWriter(path, true))
+        using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
         {writetext.WriteLine("New Projectile Created : " + gameObject.GetInstanceID().ToString());}
         StartCoroutine(DestroyAndCheckScore(6.0f));
     }
@@ -55,7 +54,7 @@ public class CollisionOfProjectile : MonoBehaviour
         switch(col.gameObject.tag){
             case "Right Hand":
             case "Left Hand":
-            using(StreamWriter writetext = new StreamWriter(path, true))
+            using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
             {writetext.WriteLine(gameObject.GetInstanceID().ToString() + " -- " + "Deflected: " + col.gameObject.tag);}
             audioSource.PlayOneShot(handSound);
             break;
@@ -63,7 +62,7 @@ public class CollisionOfProjectile : MonoBehaviour
             case "Goal":
             Debug.Log("Goal");
             gotInGoal = true;
-            using(StreamWriter writetext = new StreamWriter(path, true))
+            using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
             {writetext.WriteLine(gameObject.GetInstanceID().ToString() + " -- " + "Not Deflected: " + col.gameObject.tag);}
             audioSource.PlayOneShot(goalSound);
             break;
