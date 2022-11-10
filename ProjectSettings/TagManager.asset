@@ -21,6 +21,7 @@ TagManager:
   - Wall
   - Goal
   - HandCollider
+  - SceneSwitchButton
   layers:
   - Default
   - TransparentFX

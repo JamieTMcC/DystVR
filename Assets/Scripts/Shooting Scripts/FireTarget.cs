@@ -19,18 +19,18 @@ public class FireTarget : MonoBehaviour
 
     private AudioSource audioData;
     private GameObject flash, smoke;
-    private GameObject Buttons;
+    private GameObject buttons;
     
-    private GameObject AimCylinder;
-    private bool AssistMode,DebugMode;
-    private Vector3 OriginalSize;
-    private TMP_Text DebugText;
+    private GameObject aimCylinder;
+    private bool assistMode,debugMode;
+    private Vector3 originalSize;
+    private TMP_Text debugText;
 
     void Start(){
-        Buttons = GameObject.Find("Buttons");
-        DebugText = GameObject.Find("DebugText").GetComponent<TMP_Text>();
+        buttons = GameObject.Find("Buttons");
+        debugText = GameObject.Find("debugText").GetComponent<TMP_Text>();
         audioData = GetComponent<AudioSource>();
-        AimCylinder = GameObject.Find("pistol/Cylinder");
+        aimCylinder = GameObject.Find("pistol/Cylinder");
         flash = GameObject.FindWithTag("CannonFlash");
         smoke = GameObject.FindWithTag("Smoke");
         flash.SetActive(false);
@@ -39,20 +39,20 @@ public class FireTarget : MonoBehaviour
 
 
 
-    public void main(bool AssistMode, bool DebugMode){
-        this.AssistMode = AssistMode;
-        this.DebugMode = DebugMode;
+    public void main(bool assistMode, bool debugMode){
+        this.assistMode = assistMode;
+        this.debugMode = debugMode;
         StartCoroutine(FireTargets());
     }
 
     IEnumerator FireTargets(){
         Vector3 scaleChange = new Vector3(0.04f/numberOfTargets, 0.0f, 0.04f/numberOfTargets);
-        OriginalSize = AimCylinder.transform.localScale;
-        if(DebugMode){
-            DebugText.text += "Default AimCylinderSize: " + OriginalSize.ToString() + "\n";
-            DebugText.text += "numberOfTargets: " + numberOfTargets.ToString() + "\n";
-            DebugText.text += "fireSpeed" + fireSpeed.ToString() + "\n";
-            DebugText.text += "rateofFire" + rateOfFire.ToString() + "\n";
+        originalSize = aimCylinder.transform.localScale;
+        if(debugMode){
+            debugText.text += "Default aimCylinderSize: " + originalSize.ToString() + "\n";
+            debugText.text += "numberOfTargets: " + numberOfTargets.ToString() + "\n";
+            debugText.text += "fireSpeed" + fireSpeed.ToString() + "\n";
+            debugText.text += "rateofFire" + rateOfFire.ToString() + "\n";
         }
         yield return new WaitForSeconds(3);
         smoke.SetActive(true);
@@ -66,16 +66,16 @@ public class FireTarget : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             flash.SetActive(false);
             yield return new WaitForSeconds(rateOfFire);
-            if(AssistMode){
-                AimCylinder.transform.localScale += scaleChange;
-                if(DebugMode){
-                    DebugText.text += "AimCylinderSize: " + AimCylinder.transform.localScale.ToString() + "\n";
+            if(assistMode){
+                aimCylinder.transform.localScale += scaleChange;
+                if(debugMode){
+                    debugText.text += "aimCylinderSize: " + aimCylinder.transform.localScale.ToString() + "\n";
                 }
             }
         }
         yield return new WaitForSeconds(5);
         smoke.SetActive(false);
-        Buttons.SetActive(true);
-        AimCylinder.transform.localScale = OriginalSize;
+        buttons.SetActive(true);
+        aimCylinder.transform.localScale = originalSize;
     }
 }
