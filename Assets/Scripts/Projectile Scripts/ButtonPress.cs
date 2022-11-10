@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -33,6 +34,9 @@ public class ButtonPress : MonoBehaviour
         
         var buttonRenderer = col.gameObject.transform.GetComponent<Renderer>();
         switch(col.gameObject.tag){
+            case "SceneSwitchButton":
+                SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+                break;
             case "StartButton":
                 FireBall script = cannon.GetComponent<FireBall>();
                 buttons.SetActive(false);

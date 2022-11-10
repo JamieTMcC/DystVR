@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
 using System.Threading;
@@ -66,11 +67,13 @@ public class CollideAndDestroy : MonoBehaviour
             script.main(AssistMode, DebugMode);
 
             //sets buttons to be inactive so that they will not change while game is going on
-            collision.gameObject.transform.parent.gameObject.SetActive(false);
-            AssistButton.SetActive(false);
-            DebugButton.SetActive(false);
+            GameObject.Find("Buttons").SetActive(false);
             //returns are used as multiple collisions could happen between parent and child
             return;
+        }
+
+        if(collision.gameObject.tag == "SceneSwitchButton"){
+            SceneManager.LoadScene(sceneName:"ProjectileBlocker");
         }
 
         if(collision.gameObject.tag == "AssistButton" ^ collision.gameObject.tag == "DebugButton"){

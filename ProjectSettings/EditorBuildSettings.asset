@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PistolGameUnmodified.unity
     guid: a833219f1aeeb9f4e9dc9abfabe4b597
+  - enabled: 1
+    path: Assets/Scenes/ProjectileBlocker.unity
+    guid: 9a446f1889d0d8540902fd9f379485fa
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 560718e286bb2494ab020a3970b10906,
       type: 2}
