@@ -1,3 +1,9 @@
+/*
+Handles the firing of the projectiles when the start button is used
+Also handles the increase in size of the colliders if assistmode is enabled
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,9 +54,6 @@ public class FireBall : MonoBehaviour
         BlockerR.isTrigger = false;
         float scaleChange = 1.5f/numberOfTargets;
         Vector3 OriginalSize = BlockerL.size;
-        float x = OriginalSize.x;
-        float y = OriginalSize.y;
-        float z = OriginalSize.z;
         if(DebugMode){
             DebugText.text += "Default Hand Blocker Radius: " + OriginalSize.ToString() + "\n";
             DebugText.text += "numberOfTargets: " + numberOfTargets.ToString() + "\n";
@@ -69,7 +72,7 @@ public class FireBall : MonoBehaviour
             yield return new WaitForSeconds(0.2f);//makes a flash for a fraction of a second 
             flash.SetActive(false);
             yield return new WaitForSeconds(rateOfFire);
-            ModeActions(scaleChange,x,y,z);
+            ModeActions(scaleChange,OriginalSize);
         }
 
 
@@ -81,9 +84,9 @@ public class FireBall : MonoBehaviour
     }
 
 
-    void ModeActions(float scaleChange,float x,float y, float z){
+    void ModeActions(float scaleChange,Vector3 OriginalSize){
         if(AssistMode){
-            BlockerL.size += new Vector3(scaleChange*x,scaleChange*y,scaleChange*z);
+            BlockerL.size += OriginalSize*scaleChange;
             BlockerR.size =  BlockerL.size;
             if(DebugMode){
                 DebugText.text += "Hand Blocker size: " + BlockerL.size.ToString() + "\n";
@@ -99,7 +102,6 @@ public class FireBall : MonoBehaviour
         spawnedProjectile.transform.position = spawnPoint.position;
         spawnedProjectile.GetComponent<Rigidbody>().velocity  = spawnPoint.forward * fireSpeed;
         audioData.Play(0);
-
     }
 
 

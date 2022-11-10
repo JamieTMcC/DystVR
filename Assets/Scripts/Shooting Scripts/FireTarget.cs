@@ -1,3 +1,7 @@
+/*
+Handles the firing of the targets when the start button is used
+Also handles the increase in size of the colliders if assistmode is enabled
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

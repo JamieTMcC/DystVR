@@ -1,3 +1,9 @@
+/*
+Helper script for projectile game, can't use score in projectile game because each object
+has it's own score which disappears when the object is destroyed
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

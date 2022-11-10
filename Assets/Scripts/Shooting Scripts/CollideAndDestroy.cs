@@ -1,9 +1,13 @@
+/*
+Handles the collision between the cylinder which comes from the gun
+when the trigger is pressed and the buttons/targets
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
-using System.Threading;
 using System;
 using TMPro;
 public class CollideAndDestroy : MonoBehaviour
@@ -12,6 +16,7 @@ public class CollideAndDestroy : MonoBehaviour
     private AudioSource audioData;
     private GameObject cannon;
     public TMP_Text ScoreText,DebugText;
+    private GameObject FPSCounter;
 
     //Button Objects
     private GameObject AssistButton,DebugButton;
@@ -19,6 +24,8 @@ public class CollideAndDestroy : MonoBehaviour
 
     public Material VisibleMaterial,InvisibleMaterial;
     private int score = 0;
+
+    private PathGenerator pg;
 
     //2 Different Modes
     private bool AssistMode,DebugMode;
@@ -29,27 +36,10 @@ public class CollideAndDestroy : MonoBehaviour
         audioData = GameObject.Find("AudioObject").GetComponent<AudioSource>();
         AssistButton = GameObject.Find("AssistButton");
         DebugButton = GameObject.Find("DebugButton");
-
-
-
-
-        //Application.persistentDataPath provides a path which is accessible on multiple OS
-        path = Application.persistentDataPath + "/experimentdata/PistolGame/";
-        
-        //Reads a number from a file and increments then writes to number each new user         
-        int iteration;
-        using(StreamReader readtext = new StreamReader(path + "iteration.txt")){
-            iteration = Int32.Parse(readtext.ReadLine());
-        }
-        iteration++;
-        using(StreamWriter writetext = new StreamWriter(path + "iteration.txt")){
-            writetext.WriteLine(iteration.ToString());
-        }
-        path += iteration.ToString() + ".txt";
-
-        using(StreamWriter writetext = new StreamWriter(path)){
-            writetext.WriteLine("---------- New File ----------");
-        }
+        FPSCounter = GameObject.Find("FPSCounter");
+        FPSCounter.SetActive(false);
+        pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
+        path = pg.getPath();
     }
 
     public void OnTriggerEnter(Collider collision) {
@@ -98,10 +88,12 @@ public class CollideAndDestroy : MonoBehaviour
                     this.gameObject.transform.GetComponent<Renderer>().material = VisibleMaterial; 
                     ButtonRenderer.material.color =  Color.green;
                     DebugText.text += "Debug:\n";
+                    FPSCounter.SetActive(true);
                 }else{
                     this.gameObject.transform.GetComponent<Renderer>().material = InvisibleMaterial;
                     ButtonRenderer.material.color =  Color.red;
                     DebugText.text = "";
+                    FPSCounter.SetActive(false);
                 }
                 break;
             }

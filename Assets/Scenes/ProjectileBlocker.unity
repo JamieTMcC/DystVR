@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5475db37d3ece84b91a65c21da54c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FPSCounter: {fileID: 1621993768}
   visible: {fileID: 2100000, guid: f2fcbe2c3b1014f4da2225000874e09e, type: 2}
   invisible: {fileID: 2100000, guid: b40b1988922ea864b97284b787e29bde, type: 2}
   debugMode: 0
@@ -1095,7 +1096,7 @@ GameObject:
   - component: {fileID: 387588447}
   - component: {fileID: 387588449}
   - component: {fileID: 387588448}
-  - component: {fileID: 387588450}
+  - component: {fileID: 387588451}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1220,7 +1221,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387588446}
   m_CullTransparentMesh: 1
---- !u!114 &387588450
+--- !u!114 &387588451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1229,7 +1230,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 387588446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb061bdad5e0c164881e1907dc4debd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 64800b50baf54b54396233e53c2298bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &460341521
@@ -1878,6 +1879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5475db37d3ece84b91a65c21da54c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FPSCounter: {fileID: 1621993768}
   visible: {fileID: 2100000, guid: f2fcbe2c3b1014f4da2225000874e09e, type: 2}
   invisible: {fileID: 2100000, guid: b40b1988922ea864b97284b787e29bde, type: 2}
   debugMode: 0
@@ -7798,7 +7800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43161b8d7a20b6e4f87a3f017ba0e173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
 --- !u!1 &1424582130
 GameObject:
   m_ObjectHideFlags: 0
