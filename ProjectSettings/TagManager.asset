@@ -22,6 +22,7 @@ TagManager:
   - Goal
   - HandCollider
   - SceneSwitchButton
+  - TutorialZone
   layers:
   - Default
   - TransparentFX
