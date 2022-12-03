@@ -874,6 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18087298cf3a4a1439ac7564540ed2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetlooker: {fileID: 0}
 --- !u!135 &623050824
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1625,9 +1626,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234201486}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 16.09}
-  m_LocalScale: {x: 0.161334, y: 17.91525, z: 0.085776}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0, y: -0, z: 61.52}
+  m_LocalScale: {x: 0.55, y: 61.074467, z: 0.292417}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1799606533}
   m_RootOrder: 1
@@ -2656,4 +2657,6 @@ MonoBehaviour:
   atTargetZone: {fileID: 623050823}
   target: {fileID: 2486583345833592428, guid: 4e3742c55f90b0449ae00d8a91d1879e, type: 3}
   tutorialZone: {fileID: 8344498884109064497, guid: a505378a1744cc84ea25a4d64e0462ca,
+    type: 3}
+  tableandgun: {fileID: 49443379878495519, guid: 83c0c1d90519683418c70251eebb297e,
     type: 3}

@@ -14,6 +14,7 @@ public class LookingAtTarget : MonoBehaviour
         }
     }
 
+
     public int getX(){
         return x;
     }

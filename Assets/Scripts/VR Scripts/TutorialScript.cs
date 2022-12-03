@@ -8,7 +8,7 @@ public class TutorialScript : MonoBehaviour
     public float speedup = 1.0f;
     public LookingAtTarget lookingAtTarget;
     public AtTargetZone atTargetZone;
-    public GameObject target, tutorialZone;
+    public GameObject target, tutorialZone, tableandgun;
     List<Vector3> positions1 = new List<Vector3>();
     List<Vector3> positions2 = new List<Vector3>();
     Quaternion rotation1;
@@ -82,8 +82,12 @@ public class TutorialScript : MonoBehaviour
             yield return new WaitForSeconds(3*speedup);
             tutorialText.text = "This concludes the first portion of the tutorial";
             yield return new WaitForSeconds(3*speedup);
-
-
-
+            tutorialText.text = "This next portion of the tutorial will cover shooting";
+            yield return new WaitForSeconds(3*speedup);
+            Instantiate(tableandgun);
+            foreach(Vector3 i in positions1){
+                yield return new WaitForSeconds(0.25f*speedup);
+                Instantiate(target, i, rotation1);
+            }
     }
 }

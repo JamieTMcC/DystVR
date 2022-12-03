@@ -17,6 +17,7 @@ public class CollideAndDestroy : MonoBehaviour
     private GameObject cannon;
     public TMP_Text ScoreText,DebugText;
     private GameObject FPSCounter;
+    public bool Tutorial;   
 
     //Button Objects
     private GameObject AssistButton,DebugButton;
@@ -33,10 +34,12 @@ public class CollideAndDestroy : MonoBehaviour
     void Start(){
         cannon = GameObject.Find("Cannon");
         audioData = GameObject.Find("AudioObject").GetComponent<AudioSource>();
-        AssistButton = GameObject.Find("AssistButton");
-        DebugButton = GameObject.Find("DebugButton");
-        FPSCounter = GameObject.Find("FPSCounter");
-        FPSCounter.SetActive(false);
+        if (Tutorial){
+            AssistButton = GameObject.Find("AssistButton");
+            DebugButton = GameObject.Find("DebugButton");
+            AssistButton.GetComponent<Renderer>().material = InvisibleMaterial;
+            DebugButton.GetComponent<Renderer>().material = InvisibleMaterial;
+        }
         pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
     }
 
@@ -101,14 +104,17 @@ public class CollideAndDestroy : MonoBehaviour
         //not untagged is how we describe the different sections of the target
         if(collision.gameObject.tag != "Untagged"){
             score++;
+            audioData.Play(0);
+            if(Tutorial){
+
             ScoreText.text = "Score: " + score.ToString();
             if(DebugMode){
                 DebugText.text += DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag + "\n";
             }
-            audioData.Play(0);
             using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
             {
                writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
+            }
             }
             //Destroys the target by using the parent
             Destroy(collision.gameObject.transform.parent.gameObject);
