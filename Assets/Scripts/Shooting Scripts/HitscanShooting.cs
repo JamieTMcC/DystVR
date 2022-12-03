@@ -13,7 +13,13 @@ public class HitscanShooting : MonoBehaviour
     private AudioSource audioData;
     public AudioClip clip1;
     private XRGrabInteractable grabbable;
-    private GameObject muzzleFlash, aimCollider;
+    private GameObject aimCollider;
+    public ParticleSystem muzzleFlash;
+    public SimpleShoot simpleShoot;
+    public GameObject bullet;
+    public Transform barrelLocation;
+    private GameObject firedBullet;
+    private bool firable;
     // Start is called before the first frame update
 
 
@@ -21,27 +27,33 @@ public class HitscanShooting : MonoBehaviour
     {
         audioData = GetComponent<AudioSource>();
         grabbable = GetComponent<XRGrabInteractable>();
-        muzzleFlash = GameObject.FindWithTag("PistolFlash");
         aimCollider = GameObject.FindWithTag("AimCylinder");
-        muzzleFlash.SetActive(false);
         aimCollider.SetActive(false);
         grabbable.activated.AddListener(Fire);
+        firable = true;
     }
 
 
     public void Fire(ActivateEventArgs arg){
+        if(firable){
+        firedBullet = Instantiate(bullet, barrelLocation.position, barrelLocation.rotation);
+        firedBullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * 5000);
+        simpleShoot.fire();
         audioData.PlayOneShot(clip1);
-        muzzleFlash.SetActive(true);
+        muzzleFlash.Play();
         aimCollider.SetActive(true);
-        Invoke("MuzzleFlashTimeOut",0.1f);
+        firable = false;
         Invoke("TurnOffCollider",0.02f);
-    }
-
-    public void MuzzleFlashTimeOut(){
-        muzzleFlash.SetActive(false);
+        Invoke("MakeFireable",0.5f);
+        }
     }
 
     public void TurnOffCollider(){
         aimCollider.SetActive(false);
+    }
+
+    public void MakeFireable(){
+        Destroy(firedBullet);
+        firable = true;
     }
 }

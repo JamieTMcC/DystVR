@@ -35,10 +35,10 @@ public class CollideAndDestroy : MonoBehaviour
         cannon = GameObject.Find("Cannon");
         audioData = GameObject.Find("AudioObject").GetComponent<AudioSource>();
         if (Tutorial){
-            AssistButton = GameObject.Find("AssistButton");
-            DebugButton = GameObject.Find("DebugButton");
-            AssistButton.GetComponent<Renderer>().material = InvisibleMaterial;
-            DebugButton.GetComponent<Renderer>().material = InvisibleMaterial;
+            AssistButton = GameObject.FindWithTag("AssistButton");
+            DebugButton = GameObject.FindWithTag("DebugButton");
+            AssistButton.GetComponent<Renderer>().material = VisibleMaterial;
+            DebugButton.GetComponent<Renderer>().material = VisibleMaterial;
         }
         pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
     }

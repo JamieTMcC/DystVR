@@ -10,7 +10,7 @@ using TMPro;
 
 public class FireTarget : MonoBehaviour
 {
-    public GameObject target;
+    public GameObject target,aimCylinder;
     public Transform spawnPoint;
     public int numberOfTargets = 10;
     public float fireSpeed = 20;
@@ -20,8 +20,7 @@ public class FireTarget : MonoBehaviour
     private AudioSource audioData;
     private GameObject flash, smoke;
     private GameObject buttons;
-    
-    private GameObject aimCylinder;
+
     private bool assistMode,debugMode;
     private Vector3 originalSize;
     private TMP_Text debugText;
@@ -30,7 +29,6 @@ public class FireTarget : MonoBehaviour
         buttons = GameObject.Find("Buttons");
         debugText = GameObject.Find("DebugText").GetComponent<TMP_Text>();
         audioData = GetComponent<AudioSource>();
-        aimCylinder = GameObject.Find("pistol/Cylinder");
         flash = GameObject.FindWithTag("CannonFlash");
         smoke = GameObject.FindWithTag("Smoke");
         flash.SetActive(false);
