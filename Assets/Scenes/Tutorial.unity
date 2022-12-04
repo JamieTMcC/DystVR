@@ -2660,3 +2660,6 @@ MonoBehaviour:
     type: 3}
   tableandgun: {fileID: 49443379878495519, guid: 83c0c1d90519683418c70251eebb297e,
     type: 3}
+  continueButton: {fileID: 7237904715370713394, guid: 73f1e8b4322d3a542b230c5dd87a558f,
+    type: 3}
+  collideAndDestroy: {fileID: 0}

@@ -17,7 +17,8 @@ public class CollideAndDestroy : MonoBehaviour
     private GameObject cannon;
     public TMP_Text ScoreText,DebugText;
     private GameObject FPSCounter;
-    public bool Tutorial;   
+    public bool Tutorial;
+    public bool continueGame;   
 
     //Button Objects
     private GameObject AssistButton,DebugButton;
@@ -101,6 +102,15 @@ public class CollideAndDestroy : MonoBehaviour
             return;
         }
 
+        if(collision.gameObject.tag == "ContinueButton"){
+            continueGame = true;
+            return;
+        }
+
+
+
+
+
         //not untagged is how we describe the different sections of the target
         if(collision.gameObject.tag != "Untagged"){
             score++;
@@ -119,6 +129,18 @@ public class CollideAndDestroy : MonoBehaviour
             //Destroys the target by using the parent
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
+    }
 
+
+    public int getScore(){
+        return score;
+    }
+
+    public bool getContinue(){
+        if(continueGame){
+            continueGame = false;
+            return true;
+        }
+        return continueGame;
     }
 }

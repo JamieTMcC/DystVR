@@ -8,7 +8,8 @@ public class TutorialScript : MonoBehaviour
     public float speedup = 1.0f;
     public LookingAtTarget lookingAtTarget;
     public AtTargetZone atTargetZone;
-    public GameObject target, tutorialZone, tableandgun;
+    public GameObject target, tutorialZone, tableandgun, continueButton;
+    public CollideAndDestroy collideAndDestroy;
     List<Vector3> positions1 = new List<Vector3>();
     List<Vector3> positions2 = new List<Vector3>();
     Quaternion rotation1;
@@ -88,6 +89,13 @@ public class TutorialScript : MonoBehaviour
             foreach(Vector3 i in positions1){
                 yield return new WaitForSeconds(0.25f*speedup);
                 Instantiate(target, i, rotation1);
+            }
+            x = 0;
+            Instantiate(continueButton);
+            while(collideAndDestroy.getContinue()){                            
+                yield return new WaitForSeconds(1*speedup);
+                x = collideAndDestroy.getScore(); 
+                tutorialText.text = "You have shot at " + x + " targets";
             }
     }
 }
