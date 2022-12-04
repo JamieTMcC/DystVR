@@ -23,6 +23,7 @@ TagManager:
   - HandCollider
   - SceneSwitchButton
   - TutorialZone
+  - ContinueButton
   layers:
   - Default
   - TransparentFX
