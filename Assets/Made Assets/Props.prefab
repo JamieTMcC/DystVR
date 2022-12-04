@@ -5175,6 +5175,7 @@ MonoBehaviour:
   ScoreText: {fileID: 0}
   DebugText: {fileID: 0}
   Tutorial: 0
+  continueGame: 1
   VisibleMaterial: {fileID: 2100000, guid: f2fcbe2c3b1014f4da2225000874e09e, type: 2}
   InvisibleMaterial: {fileID: 2100000, guid: b40b1988922ea864b97284b787e29bde, type: 2}
 --- !u!1 &49443379726452094
@@ -5970,7 +5971,7 @@ PrefabInstance:
     - target: {fileID: 8574493024766216783, guid: 7e7f2840eb6a6294fb9d04582dbf8079,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2258
+      value: 0.2361
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7f2840eb6a6294fb9d04582dbf8079, type: 3}

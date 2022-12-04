@@ -9,12 +9,12 @@ public class TutorialScript : MonoBehaviour
     public LookingAtTarget lookingAtTarget;
     public AtTargetZone atTargetZone;
     public GameObject target, tutorialZone, tableandgun, continueButton;
-    public CollideAndDestroy collideAndDestroy;
+    CollideAndDestroy collideAndDestroy;
     List<Vector3> positions1 = new List<Vector3>();
     List<Vector3> positions2 = new List<Vector3>();
     Quaternion rotation1;
     Quaternion rotation2;
-    int x = 0;
+    public int x = 0;
 
 
     // Start is called before the first frame update
@@ -81,21 +81,60 @@ public class TutorialScript : MonoBehaviour
             }
             tutorialText.text = "Well Done";
             yield return new WaitForSeconds(3*speedup);
-            tutorialText.text = "This concludes the first portion of the tutorial";
-            yield return new WaitForSeconds(3*speedup);
             tutorialText.text = "This next portion of the tutorial will cover shooting";
             yield return new WaitForSeconds(3*speedup);
-            Instantiate(tableandgun);
-            foreach(Vector3 i in positions1){
-                yield return new WaitForSeconds(0.25f*speedup);
-                Instantiate(target, i, rotation1);
-            }
+            tutorialText.text = "Shoot the targets";
+            yield return new WaitForSeconds(1.5f*speedup);
+            tutorialText.text = "A outer ring shot is worth 1 point";
+            yield return new WaitForSeconds(1.5f*speedup);
+            tutorialText.text = "A inner ring shot is worth 2 points";
+            yield return new WaitForSeconds(1.5f*speedup);
+            tutorialText.text = "A bullseye shot is worth 3 points";
+            yield return new WaitForSeconds(1.5f*speedup);
+            
+            
+            
+            //Shooting Tutorial
+            tableandgun = Instantiate(tableandgun);
+            collideAndDestroy = GameObject.FindWithTag("AimCylinder").GetComponent<CollideAndDestroy>();
+            collideAndDestroy.setContinue(true);
             x = 0;
-            Instantiate(continueButton);
-            while(collideAndDestroy.getContinue()){                            
-                yield return new WaitForSeconds(1*speedup);
-                x = collideAndDestroy.getScore(); 
-                tutorialText.text = "You have shot at " + x + " targets";
+            bool makeTargets = true;
+            while(collideAndDestroy.getContinue()){
+                if(x != collideAndDestroy.getNoOfHits()){
+                    makeTargets = true;
+                }
+                x = collideAndDestroy.getNoOfHits();
+                if(x%4 == 0 && makeTargets){
+                    
+                    //makes targets
+                    foreach(Vector3 i in positions1){
+                       yield return new WaitForSeconds(0.25f*speedup);
+                        Instantiate(target, i, rotation1);
+                    }
+
+                    makeTargets = false;
+                    
+                    if(x == 4) Instantiate(continueButton).transform.position += new Vector3(-3,0,0);
+                    if(x%3 == 0) tutorialText.text = "You can continue by shooting the Continue button";
+                }
+                yield return new WaitForSeconds(1*speedup); 
+                tutorialText.text = "Score: " + collideAndDestroy.getScore();
+    
             }
+
+            GameObject[] targets = GameObject.FindGameObjectsWithTag("Target");
+            foreach(GameObject t in targets){
+                Destroy(t);
+            }
+            
+            
+            
+            tutorialText.text = "Well Done";
+            yield return new WaitForSeconds(3*speedup);
+            tutorialText.text = "The next part of the tutorial will cover the projectile blocking game";
+            yield return new WaitForSeconds(3*speedup);
+            tutorialText.text = "The aim of the game is to block as many projectiles as possible";
+            yield return new WaitForSeconds(3*speedup); 
     }
 }

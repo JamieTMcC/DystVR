@@ -18,7 +18,7 @@ public class CollideAndDestroy : MonoBehaviour
     public TMP_Text ScoreText,DebugText;
     private GameObject FPSCounter;
     public bool Tutorial;
-    public bool continueGame;   
+    public bool continueGame = true;   
 
     //Button Objects
     private GameObject AssistButton,DebugButton;
@@ -26,6 +26,7 @@ public class CollideAndDestroy : MonoBehaviour
 
     public Material VisibleMaterial,InvisibleMaterial;
     private int score = 0;
+    private int noOfHits = 0;
 
     private PathGenerator pg;
 
@@ -40,8 +41,8 @@ public class CollideAndDestroy : MonoBehaviour
             DebugButton = GameObject.FindWithTag("DebugButton");
             AssistButton.GetComponent<Renderer>().material = VisibleMaterial;
             DebugButton.GetComponent<Renderer>().material = VisibleMaterial;
+            pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
         }
-        pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
     }
 
     public void OnTriggerEnter(Collider collision) {
@@ -103,7 +104,8 @@ public class CollideAndDestroy : MonoBehaviour
         }
 
         if(collision.gameObject.tag == "ContinueButton"){
-            continueGame = true;
+            continueGame = false;
+            Destroy(collision.gameObject.transform.parent.gameObject);
             return;
         }
 
@@ -126,6 +128,11 @@ public class CollideAndDestroy : MonoBehaviour
                writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
             }
             }
+            if(collision.gameObject.tag == "OuterRing"){
+                noOfHits++;
+            }
+
+
             //Destroys the target by using the parent
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
@@ -135,12 +142,14 @@ public class CollideAndDestroy : MonoBehaviour
     public int getScore(){
         return score;
     }
+    public int getNoOfHits(){
+        return noOfHits;
+    }
 
     public bool getContinue(){
-        if(continueGame){
-            continueGame = false;
-            return true;
-        }
         return continueGame;
+    }
+    public void setContinue(bool value){
+        continueGame = value;
     }
 }

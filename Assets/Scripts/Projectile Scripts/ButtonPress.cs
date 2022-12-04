@@ -1,9 +1,6 @@
 /*
 Handles collisions between the buttons and hands
 */ 
-
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
