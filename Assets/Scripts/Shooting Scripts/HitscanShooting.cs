@@ -37,7 +37,7 @@ public class HitscanShooting : MonoBehaviour
     public void Fire(ActivateEventArgs arg){
         if(firable){
         firedBullet = Instantiate(bullet, barrelLocation.position, barrelLocation.rotation);
-        firedBullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * 5000);
+        firedBullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * 3000);
         simpleShoot.fire();
         audioData.PlayOneShot(clip1);
         muzzleFlash.Play();
