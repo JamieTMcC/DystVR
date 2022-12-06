@@ -23,20 +23,22 @@ public class CollisionOfProjectile : MonoBehaviour
     private PathGenerator pg;
     
     private bool gotInGoal = false;
+    public bool tutorial = false;
 
 
     void Start(){
-        scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
         audioSource = GetComponent<AudioSource>();
+        if(!tutorial){
+        scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
         pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
         sm = GameObject.Find("ScoreText").GetComponent<ScoreManager>();
         using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
         {writetext.WriteLine("New Projectile Created : " + gameObject.GetInstanceID().ToString());}
-        StartCoroutine(DestroyAndCheckScore(6.0f));
+        Invoke("DestroyAndCheckScore", 6.0f);
+        }
     }
 
-    IEnumerator DestroyAndCheckScore(float time){
-        yield return new WaitForSeconds(time);
+    void DestroyAndCheckScore(){
         if(gotInGoal){
             sm.score--;
         }else{
@@ -54,8 +56,10 @@ public class CollisionOfProjectile : MonoBehaviour
         switch(col.gameObject.tag){
             case "Right Hand":
             case "Left Hand":
+            if(!tutorial){
             using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
             {writetext.WriteLine(gameObject.GetInstanceID().ToString() + " -- " + "Deflected: " + col.gameObject.tag);}
+            }
             audioSource.PlayOneShot(handSound);
             break;
 

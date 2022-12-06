@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class TutorialScript : MonoBehaviour
 {
     public TMP_Text tutorialText;
     public float speedup = 1.0f;
     public LookingAtTarget lookingAtTarget;
     public AtTargetZone atTargetZone;
-    public GameObject target, tutorialZone, tableandgun, continueButton;
+    public GameObject target, tutorialZone, tableandgun, tableAndBalls, continueButton, resetButton;
     CollideAndDestroy collideAndDestroy;
     List<Vector3> positions1 = new List<Vector3>();
     List<Vector3> positions2 = new List<Vector3>();
@@ -127,14 +128,52 @@ public class TutorialScript : MonoBehaviour
             foreach(GameObject t in targets){
                 Destroy(t);
             }
-            
-            
-            
+            Destroy(tableandgun);
             tutorialText.text = "Well Done";
             yield return new WaitForSeconds(3*speedup);
             tutorialText.text = "The next part of the tutorial will cover the projectile blocking game";
             yield return new WaitForSeconds(3*speedup);
             tutorialText.text = "The aim of the game is to block as many projectiles as possible";
-            yield return new WaitForSeconds(3*speedup); 
+            yield return new WaitForSeconds(3*speedup);
+            tutorialText.text = "Push the balls away using your hands";
+            GameObject tandb = Instantiate(tableAndBalls);
+            
+            GameObject LHand = GameObject.FindWithTag("Left Hand");
+            GameObject RHand = GameObject.FindWithTag("Right Hand");
+            LHand.GetComponent<BoxCollider>().isTrigger = false;
+            RHand.GetComponent<BoxCollider>().isTrigger = false;
+
+
+            GameObject ContButton = Instantiate(continueButton);
+            ContButton.transform.position += new Vector3(-4,0,0.5f);
+            ContButton.transform.GetChild(0).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            
+            
+            GameObject ResetButton = Instantiate(resetButton);
+            ResetButton.transform.GetChild(0).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            ResetButton.transform.position += new Vector3(-1,0,0.5f);
+            
+            
+            while(!LHand.GetComponent<ButtonPress>().continueGame && !RHand.GetComponent<ButtonPress>().continueGame){
+                yield return new WaitForSeconds(0.1f*speedup);
+                if(LHand.GetComponent<ButtonPress>().reset || RHand.GetComponent<ButtonPress>().reset){
+                    Destroy(tandb);
+                    tandb = Instantiate(tableAndBalls);
+                    LHand.GetComponent<ButtonPress>().reset = false;
+                    RHand.GetComponent<ButtonPress>().reset = false;
+                }
+            }
+            Destroy(tandb);
+            
+            
+            tutorialText.text = "The proper game will involve balls which move with velocity towards you...";
+            yield return new WaitForSeconds(2.5f*speedup);
+            tutorialText.text = "and a goal which you must protect";
+            yield return new WaitForSeconds(3*speedup);
+            tutorialText.text = "Tutorial Complete - Moving to Shooting Game";
+            yield return new WaitForSeconds(3*speedup);
+            
+            SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+
     }
 }

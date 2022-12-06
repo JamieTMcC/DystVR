@@ -16,12 +16,13 @@ public class ButtonPress : MonoBehaviour
 
     private Vector3 startPosition;
     public Material visible,invisible;
-    public bool debugMode, assistMode;
+    public bool debugMode, assistMode, tutorial, continueGame;
     public GameObject PaddleR,PaddleL;
-    public ActionBasedContinuousMoveProvider LocoScript;
+    public bool hasMovedBall = false, reset = false;
     private TMP_Text DebugText;
 
     void Start(){
+        if(!tutorial){
         cannon = GameObject.Find("Cannon");
         goalZone = GameObject.Find("Goal");
         buttons = GameObject.Find("Buttons");
@@ -29,6 +30,7 @@ public class ButtonPress : MonoBehaviour
         XROrigin = GameObject.Find("XR Origin");
         startPosition = GameObject.Find("StartPoint").transform.position;
         startPosition.y = XROrigin.transform.position.y;
+        }
     }
 
 
@@ -82,6 +84,18 @@ public class ButtonPress : MonoBehaviour
                     PaddleR.SetActive(false);
                     DebugText.text = "";
                 }
+                break;
+            case "OutOfBounds":
+                XROrigin.transform.position = startPosition;
+                break;
+            case "ContinueButton":
+                continueGame = true;
+                break;
+            case "ResetButton":
+                reset = true;
+                break;
+            case "Projectile":
+                hasMovedBall = true;
                 break;
         }
     }

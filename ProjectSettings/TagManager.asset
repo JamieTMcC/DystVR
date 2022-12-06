@@ -24,6 +24,9 @@ TagManager:
   - SceneSwitchButton
   - TutorialZone
   - ContinueButton
+  - OutOfBounds
+  - Projectile
+  - ResetButton
   layers:
   - Default
   - TransparentFX
