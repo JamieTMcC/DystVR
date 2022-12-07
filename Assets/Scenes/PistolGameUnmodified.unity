@@ -3123,7 +3123,7 @@ GameObject:
   - component: {fileID: 1621993770}
   m_Layer: 5
   m_Name: FPSCounter
-  m_TagString: Untagged
+  m_TagString: FPSCounter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4015,7 +4015,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2124742188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 291808989c78b6640b6833a52139b217, type: 3}
+  m_Script: {fileID: 11500000, guid: 899867d652804ce4bb2f0808498ceb5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &13244190411930858
@@ -4432,6 +4432,11 @@ PrefabInstance:
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 1353510774}
+    - target: {fileID: 6035072102748512721, guid: 83c0c1d90519683418c70251eebb297e,
+        type: 3}
+      propertyPath: NotTutorial
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6035072102920294636, guid: 83c0c1d90519683418c70251eebb297e,
         type: 3}
       propertyPath: m_Name

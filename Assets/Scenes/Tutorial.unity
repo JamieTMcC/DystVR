@@ -1197,7 +1197,6 @@ GameObject:
   - component: {fileID: 1353510773}
   - component: {fileID: 1353510775}
   - component: {fileID: 1353510774}
-  - component: {fileID: 1353510776}
   m_Layer: 5
   m_Name: Tutorial Text
   m_TagString: Untagged
@@ -1322,19 +1321,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353510772}
   m_CullTransparentMesh: 1
---- !u!114 &1353510776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353510772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24140048afb34107ea5aa0758a008b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
 --- !u!1 &1424582130
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,11 +2640,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2124742188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 985d5ed03b29b094bb2a347cc228b1dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 733909dd096a17d4cb5cf8331bab2548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialText: {fileID: 1353510774}
-  speedup: 0.1
+  waitTime: 3
   lookingAtTarget: {fileID: 1234201491}
   atTargetZone: {fileID: 623050823}
   target: {fileID: 2486583345833592428, guid: 4e3742c55f90b0449ae00d8a91d1879e, type: 3}

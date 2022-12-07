@@ -17,7 +17,7 @@ public class CollideAndDestroy : MonoBehaviour
     private GameObject cannon;
     public TMP_Text ScoreText,DebugText;
     private GameObject FPSCounter;
-    public bool Tutorial;
+    public bool NotTutorial;
     public bool continueGame = true;   
 
     //Button Objects
@@ -36,11 +36,11 @@ public class CollideAndDestroy : MonoBehaviour
     void Start(){
         cannon = GameObject.Find("Cannon");
         audioData = GameObject.Find("AudioObject").GetComponent<AudioSource>();
-        if (Tutorial){
+        if (NotTutorial){
             AssistButton = GameObject.FindWithTag("AssistButton");
             DebugButton = GameObject.FindWithTag("DebugButton");
-            AssistButton.GetComponent<Renderer>().material = VisibleMaterial;
-            DebugButton.GetComponent<Renderer>().material = VisibleMaterial;
+            FPSCounter = GameObject.FindWithTag("FPSCounter");
+            FPSCounter.SetActive(false);
             pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
         }
     }
@@ -117,7 +117,7 @@ public class CollideAndDestroy : MonoBehaviour
         if(collision.gameObject.tag != "Untagged"){
             score++;
             audioData.Play(0);
-            if(Tutorial){
+            if(NotTutorial){
 
             ScoreText.text = "Score: " + score.ToString();
             if(DebugMode){
