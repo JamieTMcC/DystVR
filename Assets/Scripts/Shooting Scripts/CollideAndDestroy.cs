@@ -28,8 +28,6 @@ public class CollideAndDestroy : MonoBehaviour
     private int score = 0;
     private int noOfHits = 0;
 
-    private PathGenerator pg;
-
     //2 Different Modes
     private bool AssistMode,DebugMode;
 
@@ -62,11 +60,11 @@ public class CollideAndDestroy : MonoBehaviour
             //sets buttons to be inactive so that they will not change while game is going on
             GameObject.Find("Buttons").SetActive(false);
             //returns are used as multiple collisions could happen between parent and child
+
             return;
         }
 
-        if(collision.gameObject.tag == "SceneSwitchButton"){
-            SceneManager.LoadScene(sceneName:"ProjectileBlocker");
+        if(collision.gameObject.tag == "SceneSwitchButton") SceneManager.LoadScene(sceneName:"ProjectileBlocker")
         }
 
         if(collision.gameObject.tag == "AssistButton" ^ collision.gameObject.tag == "DebugButton"){
@@ -115,8 +113,10 @@ public class CollideAndDestroy : MonoBehaviour
 
         //not untagged is how we describe the different sections of the target
         if(collision.gameObject.tag != "Untagged"){
+            
             score++;
             audioData.Play(0);
+
             if(NotTutorial){
 
             ScoreText.text = "Score: " + score.ToString();
@@ -125,7 +125,8 @@ public class CollideAndDestroy : MonoBehaviour
             }
             using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
             {
-               writetext.WriteLine(DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag);
+                Logger.collided = collision.gameObject.tag;
+               Logger.Log(collision.gameObject.tag, additive = true);
             }
             }
             if(collision.gameObject.tag == "OuterRing"){

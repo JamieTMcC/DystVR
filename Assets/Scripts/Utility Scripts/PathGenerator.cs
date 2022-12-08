@@ -49,10 +49,6 @@ public class PathGenerator : MonoBehaviour
             writetext.WriteLine(iteration.ToString());
         }
         path += iteration.ToString() + ".txt";
-
-        using(StreamWriter writetext = new StreamWriter(path)){
-            writetext.WriteLine("---------- New File ----------");
-        }   
     }
 
     public string getPath(){

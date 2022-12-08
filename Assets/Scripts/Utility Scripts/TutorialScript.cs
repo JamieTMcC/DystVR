@@ -5,8 +5,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class TutorialScript : MonoBehaviour
 {
-    public TMP_Text tutorialText;
-    public float waitTime = 3.0f;
+    public TMP_Text tutorialText, continueText;
+    public float waitTime = 0.75f;
     public LookingAtTarget lookingAtTarget;
     public AtTargetZone atTargetZone;
     public GameObject target, tutorialZone, tableandgun, tableAndBalls, continueButton, resetButton;
@@ -17,6 +17,7 @@ public class TutorialScript : MonoBehaviour
     Quaternion rotation2;
     float spawnTime;
     public int x = 0;
+    bool continueTutorial = false;
 
 
     // Start is called before the first frame update
@@ -32,6 +33,7 @@ public class TutorialScript : MonoBehaviour
             positions2[i] = new Vector3(5, pos.y, pos.z);
             i++;
         }
+        continueText.text = "";
         rotation1 = Quaternion.Euler(0, 15, 0);
         rotation2 = Quaternion.Euler(0, -15, 180);
         StartCoroutine(StartTutorial());
@@ -76,12 +78,12 @@ public class TutorialScript : MonoBehaviour
 
             yield return UpdateTutorial("Well Done");
             yield return UpdateTutorial("You can move around using the left analog stick");
-            yield return UpdateTutorial("Move to the red zone to continue");
             
             //make a red zone for player to walk to
             Instantiate(tutorialZone, new Vector3(0,0,0), Quaternion.Euler(0,0,0));
             while(!atTargetZone.getReached()){
                 yield return new WaitForSeconds(spawnTime);
+                tutorialText.text = "Move to the red zone to continue";
             }
 
             yield return UpdateTutorial("Well Done");
@@ -90,6 +92,7 @@ public class TutorialScript : MonoBehaviour
             yield return UpdateTutorial("A outer ring shot is worth 1 point");
             yield return UpdateTutorial("A inner ring shot is worth 2 points");
             yield return UpdateTutorial("A bullseye shot is worth 3 points");
+            yield return UpdateTutorial("In the shooting game you can shoot buttons to interact with the game");
             
             
             
@@ -119,7 +122,7 @@ public class TutorialScript : MonoBehaviour
                     makeTargets = false;
                     
                     if(x == 4) Instantiate(continueButton).transform.position += new Vector3(-3,0,0);
-                    if(x%3 == 0) tutorialText.text = "You can continue by shooting the Continue button";
+                    if(x%3 == 0) UpdateTutorial("You can continue by shooting the Continue button");
                 }
                 yield return new WaitForSeconds(1); 
                 tutorialText.text = "Score: " + collideAndDestroy.getScore();
@@ -176,7 +179,21 @@ public class TutorialScript : MonoBehaviour
     }
 
     IEnumerator UpdateTutorial(string s){
-            tutorialText.text = s;
-            yield return new WaitForSeconds(waitTime);
+        tutorialText.text = s;
+        yield return new WaitForSeconds(waitTime);
+        continueText.text = "A: Continue";
+        while(!continueTutorial){
+            yield return new WaitForSeconds(waitTime/30);
+        }
+        continueText.text = "";
+        continueTutorial = false;
+    }
+
+    //used to check if the player has pressed a face button to continue tutorial
+    void Update(){
+        if(continueText.text == "A: Continue" && (Input.GetButtonDown("XRI_Left_PrimaryButton") || Input.GetButtonDown("XRI_Right_PrimaryButton") || Input.GetButtonDown("XRI_Left_SecondaryButton") || Input.GetButtonDown("XRI_Right_SecondaryButton")))
+        {
+        continueTutorial = true;
+        }
     }
 }

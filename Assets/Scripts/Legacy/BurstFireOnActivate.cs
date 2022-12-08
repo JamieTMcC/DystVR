@@ -17,7 +17,6 @@ public class BurstFireOnActivate : MonoBehaviour
     public GameObject MuzzleFlash;
     // Start is called before the first frame update
 
-
     void Start()
     {
         audioData = GetComponent<AudioSource>();
