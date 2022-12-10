@@ -20,6 +20,7 @@ public class HitscanShooting : MonoBehaviour
     public Transform barrelLocation;
     private GameObject firedBullet;
     private bool firable;
+    private ShootLogger logger;
     // Start is called before the first frame update
 
 
@@ -31,11 +32,13 @@ public class HitscanShooting : MonoBehaviour
         aimCollider.SetActive(false);
         grabbable.activated.AddListener(Fire);
         firable = true;
+        logger = GameObject.Find("XR Origin").GetComponent<ShootLogger>();
     }
 
 
     public void Fire(ActivateEventArgs arg){
         if(firable){
+        logger.aimCylinderActive = true;
         firedBullet = Instantiate(bullet, barrelLocation.position, barrelLocation.rotation);
         firedBullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * 3000);
         simpleShoot.fire();
@@ -50,6 +53,7 @@ public class HitscanShooting : MonoBehaviour
 
     public void TurnOffCollider(){
         aimCollider.SetActive(false);
+        logger.aimCylinderActive = false;
     }
 
     public void MakeFireable(){

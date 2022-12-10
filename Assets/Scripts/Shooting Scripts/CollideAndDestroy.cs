@@ -18,7 +18,8 @@ public class CollideAndDestroy : MonoBehaviour
     public TMP_Text ScoreText,DebugText;
     private GameObject FPSCounter;
     public bool NotTutorial;
-    public bool continueGame = true;   
+    public bool continueGame = true;
+    private ShootLogger logger;
 
     //Button Objects
     private GameObject AssistButton,DebugButton;
@@ -35,11 +36,11 @@ public class CollideAndDestroy : MonoBehaviour
         cannon = GameObject.Find("Cannon");
         audioData = GameObject.Find("AudioObject").GetComponent<AudioSource>();
         if (NotTutorial){
+            logger = GameObject.Find("XR Origin").GetComponent<ShootLogger>();
             AssistButton = GameObject.FindWithTag("AssistButton");
             DebugButton = GameObject.FindWithTag("DebugButton");
             FPSCounter = GameObject.FindWithTag("FPSCounter");
             FPSCounter.SetActive(false);
-            pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
         }
     }
 
@@ -64,8 +65,7 @@ public class CollideAndDestroy : MonoBehaviour
             return;
         }
 
-        if(collision.gameObject.tag == "SceneSwitchButton") SceneManager.LoadScene(sceneName:"ProjectileBlocker")
-        }
+        if(collision.gameObject.tag == "SceneSwitchButton") SceneManager.LoadScene(sceneName:"ProjectileBlocker");
 
         if(collision.gameObject.tag == "AssistButton" ^ collision.gameObject.tag == "DebugButton"){
             /*ButtonRenderer allows us to alter the material of an object
@@ -118,24 +118,19 @@ public class CollideAndDestroy : MonoBehaviour
             audioData.Play(0);
 
             if(NotTutorial){
-
-            ScoreText.text = "Score: " + score.ToString();
-            if(DebugMode){
-                DebugText.text += DateTime.Now.ToString("h:mm:ss") + " -- " + collision.gameObject.tag + "\n";
-            }
-            using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
-            {
-                Logger.collided = collision.gameObject.tag;
-               Logger.Log(collision.gameObject.tag, additive = true);
-            }
+                ScoreText.text = "Score: " + score.ToString();
+                logger.falseshot = collision.gameObject.tag;
+                logger.trueshot = collision.gameObject.tag;
             }
             if(collision.gameObject.tag == "OuterRing"){
                 noOfHits++;
             }
 
 
+
             //Destroys the target by using the parent
             Destroy(collision.gameObject.transform.parent.gameObject);
+            logger.targetHitTime = Time.time.ToString();
         }
     }
 

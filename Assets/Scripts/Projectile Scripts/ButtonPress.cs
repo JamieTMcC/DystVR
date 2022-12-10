@@ -15,6 +15,7 @@ public class ButtonPress : MonoBehaviour
     public GameObject FPSCounter;//FPSCounter needs to be disabled at startup and since we run this twice, find can't be used
 
     private Vector3 startPosition;
+    private ShootLogger logger;
     public Material visible,invisible;
     public bool debugMode, assistMode, tutorial, continueGame;
     public GameObject PaddleR,PaddleL;
@@ -30,6 +31,7 @@ public class ButtonPress : MonoBehaviour
         XROrigin = GameObject.Find("XR Origin");
         startPosition = GameObject.Find("StartPoint").transform.position;
         startPosition.y = XROrigin.transform.position.y;
+        logger = XROrigin.GetComponent<ShootLogger>();
         }
     }
 

@@ -48,7 +48,7 @@ public class PathGenerator : MonoBehaviour
         using(StreamWriter writetext = new StreamWriter(path + "iteration.txt")){
             writetext.WriteLine(iteration.ToString());
         }
-        path += iteration.ToString() + ".txt";
+        path += iteration.ToString() + ".csv";
     }
 
     public string getPath(){
