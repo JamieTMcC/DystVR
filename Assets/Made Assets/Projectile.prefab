@@ -102,6 +102,7 @@ MonoBehaviour:
   wallSound: {fileID: 8300000, guid: b654da5ae2d7ba642b7137d025088dea, type: 3}
   goalSound: {fileID: 8300000, guid: 47eeb411a715b094dbdb8b849f43764e, type: 3}
   handSound: {fileID: 8300000, guid: f3ee683e3fe3a7d4393ef2687752b466, type: 3}
+  tutorial: 0
 --- !u!54 &3002989684399865041
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -110,7 +111,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3503612651779415548}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -221,7 +222,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3503612651779415548}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9ac5e5a85e45a5b469227cf00427c635, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

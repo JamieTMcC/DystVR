@@ -142,6 +142,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6514949975769209242}
     m_Modifications:
+    - target: {fileID: -8481519880072220385, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9ac5e5a85e45a5b469227cf00427c635,
+        type: 2}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3503612651779415545, guid: 0d508c38ff56062478d39e60eba5f026,
         type: 3}
       propertyPath: m_RootOrder
@@ -227,6 +243,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6514949975769209242}
     m_Modifications:
+    - target: {fileID: -8481519880072220385, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9ac5e5a85e45a5b469227cf00427c635,
+        type: 2}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3503612651779415545, guid: 0d508c38ff56062478d39e60eba5f026,
         type: 3}
       propertyPath: m_RootOrder
@@ -312,6 +344,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6514949975769209242}
     m_Modifications:
+    - target: {fileID: -8481519880072220385, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9ac5e5a85e45a5b469227cf00427c635,
+        type: 2}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3503612651779415545, guid: 0d508c38ff56062478d39e60eba5f026,
         type: 3}
       propertyPath: m_RootOrder
@@ -397,6 +445,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6514949975769209242}
     m_Modifications:
+    - target: {fileID: -8481519880072220385, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9ac5e5a85e45a5b469227cf00427c635,
+        type: 2}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3503612651779415545, guid: 0d508c38ff56062478d39e60eba5f026,
         type: 3}
       propertyPath: m_RootOrder
@@ -482,6 +546,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6514949975769209242}
     m_Modifications:
+    - target: {fileID: -8481519880072220385, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9ac5e5a85e45a5b469227cf00427c635,
+        type: 2}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002989684399865041, guid: 0d508c38ff56062478d39e60eba5f026,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3503612651779415545, guid: 0d508c38ff56062478d39e60eba5f026,
         type: 3}
       propertyPath: m_RootOrder
