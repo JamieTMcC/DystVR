@@ -20,7 +20,6 @@ public class FireTarget : MonoBehaviour
 
     private ShootLogger logger;
     private AudioSource audioData;
-    private GameObject flash, smoke;
     private GameObject buttons;
 
     private bool assistMode,debugMode;
@@ -33,10 +32,6 @@ public class FireTarget : MonoBehaviour
         timerText = GameObject.Find("Timer").GetComponent<TMP_Text>();
         timerText.text = "";
         audioData = GetComponent<AudioSource>();
-        flash = GameObject.FindWithTag("CannonFlash");
-        smoke = GameObject.FindWithTag("Smoke");
-        flash.SetActive(false);
-        smoke.SetActive(false);
         logger = GameObject.Find("XR Origin").GetComponent<ShootLogger>();
     }
 
@@ -50,9 +45,10 @@ public class FireTarget : MonoBehaviour
 
     IEnumerator FireTargets(){
         logger.startLogging = true;
-        Vector3 scaleChange = new Vector3(0.07f/numberOfSets, 0.0f, 0.07f/numberOfSets);
+        Vector3 scaleChange = new Vector3(0.05f/numberOfSets, 0.0f, 0.05f/numberOfSets);
         originalSize = aimCylinder.transform.localScale;
         logger.defaultAimCylinderSize = originalSize.x.ToString();
+        logger.aimCylinderSize = originalSize.x.ToString();
         if(debugMode){
             debugText.text += "Default aimCylinderSize: " + originalSize.ToString() + "\n";
             debugText.text += "numberOfTargets: " + numberOfTargets.ToString() + "\n";
@@ -60,15 +56,12 @@ public class FireTarget : MonoBehaviour
             debugText.text += "rateofFire" + rateOfFire.ToString() + "\n";
         }
         yield return new WaitForSeconds(3);
-        smoke.SetActive(true);
         for(int j = 0; j<numberOfSets;j++){
             logger.setNumber = j;
             for(int i = 0; i<numberOfTargets;i++){
                 logger.targetNumber = i;
 
                 GameObject spawnedTarget = Instantiate(target);
-                flash.SetActive(true);
-                Invoke("DeactivateFlash", 0.2f);
 
                 spawnedTarget.transform.position = spawnPoint.position;
                 spawnedTarget.GetComponent<Rigidbody>().velocity  = spawnPoint.forward * fireSpeed;
@@ -84,7 +77,7 @@ public class FireTarget : MonoBehaviour
             logger.aimCylinderSize = aimCylinder.transform.localScale.x.ToString();
             
             int t = timeDelay;
-            while(t > 0){
+            while(t > 0 && j != numberOfSets-1){
                 timerText.text = "Time till restart: " + t.ToString() + "s\n";
                 yield return new WaitForSeconds(1);
                 t--;
@@ -92,16 +85,10 @@ public class FireTarget : MonoBehaviour
             timerText.text = "";
 
         }
-
-        yield return new WaitForSeconds(5);
-        smoke.SetActive(false);
-        buttons.SetActive(true);
+        yield return new WaitForSeconds(1);
         aimCylinder.transform.localScale = originalSize;
         logger.startLogging = false;
         logger.stopLogging = true;
-    }
-
-    void DeactivateFlash(){
-        flash.SetActive(false);
+        buttons.SetActive(true);
     }
 }

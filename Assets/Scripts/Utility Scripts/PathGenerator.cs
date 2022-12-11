@@ -11,6 +11,7 @@ using System;
 public class PathGenerator : MonoBehaviour
 {
     private string path;
+    public bool done;
     
     // Start is called before the first frame update
     void Start(){
@@ -37,6 +38,7 @@ public class PathGenerator : MonoBehaviour
             writetext.WriteLine("0");
         }
         }
+        Debug.Log(path);
 
 
         //Reads a number from a file and increments then writes to number each new user         
@@ -49,6 +51,8 @@ public class PathGenerator : MonoBehaviour
             writetext.WriteLine(iteration.ToString());
         }
         path += iteration.ToString() + ".csv";
+        Debug.Log(path);
+        done = true;
     }
 
     public string getPath(){

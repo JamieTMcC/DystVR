@@ -12,15 +12,16 @@ public class ShootLogger : MonoBehaviour
     public string trueshot,falseshot,aimCylinderSize,defaultAimCylinderSize;
     public string targetFiredTime, targetHitTime;
     public bool aimCylinderActive,startLogging,stopLogging;
-    private string path;
 
     // Start is called before the first frame update
     void Start()
     {
         pg = gameObject.GetComponent<PathGenerator>();
-        path = pg.getPath();
-        Debug.Log(path);
-        writetext = new StreamWriter(path);
+        Invoke("GetPath", 1f);
+    }
+
+    void GetPath(){
+        writetext = new StreamWriter(pg.getPath());
         Log("Time, Set Number, Target Number, False Shot, True Shot, Target Fired Time, Target Destroyed Time, Aim Cylinder Size, Normal Aim Cylinder Size, Aim Cylinder Active,");
     }
 
@@ -31,7 +32,7 @@ public class ShootLogger : MonoBehaviour
         "," + falseshot + "," + trueshot + 
         "," + targetFiredTime + "," + targetHitTime +
         "," + aimCylinderSize + "," + defaultAimCylinderSize + 
-        "," + aimCylinderActive.ToString());
+        "," + aimCylinderActive.ToString()+ ",");
     if(stopLogging)writetext.Close();
 
     }
@@ -39,7 +40,9 @@ public class ShootLogger : MonoBehaviour
     void Log(string data)
     {
         writetext.WriteLine(data);
-        trueshot = "";
         falseshot = "";
+        trueshot = "";
+        targetFiredTime="";
+        targetHitTime="";
     }
 }

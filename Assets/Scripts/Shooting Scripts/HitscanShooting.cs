@@ -13,7 +13,7 @@ public class HitscanShooting : MonoBehaviour
     private AudioSource audioData;
     public AudioClip clip1;
     private XRGrabInteractable grabbable;
-    private GameObject aimCollider;
+    private GameObject aimCollider,trueAimCollider;
     public ParticleSystem muzzleFlash;
     public SimpleShoot simpleShoot;
     public GameObject bullet;
@@ -29,7 +29,9 @@ public class HitscanShooting : MonoBehaviour
         audioData = GetComponent<AudioSource>();
         grabbable = GetComponent<XRGrabInteractable>();
         aimCollider = GameObject.FindWithTag("AimCylinder");
+        trueAimCollider = GameObject.FindWithTag("TrueAimCylinder");
         aimCollider.SetActive(false);
+        trueAimCollider.SetActive(false);
         grabbable.activated.AddListener(Fire);
         firable = true;
         logger = GameObject.Find("XR Origin").GetComponent<ShootLogger>();
@@ -38,13 +40,14 @@ public class HitscanShooting : MonoBehaviour
 
     public void Fire(ActivateEventArgs arg){
         if(firable){
-        logger.aimCylinderActive = true;
         firedBullet = Instantiate(bullet, barrelLocation.position, barrelLocation.rotation);
         firedBullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * 3000);
         simpleShoot.fire();
         audioData.PlayOneShot(clip1);
         muzzleFlash.Play();
+        logger.aimCylinderActive = true;
         aimCollider.SetActive(true);
+        trueAimCollider.SetActive(true);
         firable = false;
         Invoke("TurnOffCollider",0.02f);
         Invoke("MakeFireable",0.5f);
@@ -53,6 +56,7 @@ public class HitscanShooting : MonoBehaviour
 
     public void TurnOffCollider(){
         aimCollider.SetActive(false);
+        trueAimCollider.SetActive(false);
         logger.aimCylinderActive = false;
     }
 

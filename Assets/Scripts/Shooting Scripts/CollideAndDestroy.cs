@@ -113,15 +113,18 @@ public class CollideAndDestroy : MonoBehaviour
 
         //not untagged is how we describe the different sections of the target
         if(collision.gameObject.tag != "Untagged"){
-            
+
             score++;
             audioData.Play(0);
+
 
             if(NotTutorial){
                 ScoreText.text = "Score: " + score.ToString();
                 logger.falseshot = collision.gameObject.tag;
-                logger.trueshot = collision.gameObject.tag;
+                logger.targetHitTime = Time.time.ToString();
             }
+
+
             if(collision.gameObject.tag == "OuterRing"){
                 noOfHits++;
             }
@@ -130,7 +133,6 @@ public class CollideAndDestroy : MonoBehaviour
 
             //Destroys the target by using the parent
             Destroy(collision.gameObject.transform.parent.gameObject);
-            logger.targetHitTime = Time.time.ToString();
         }
     }
 

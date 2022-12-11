@@ -28,6 +28,7 @@ TagManager:
   - Projectile
   - ResetButton
   - FPSCounter
+  - TrueAimCylinder
   layers:
   - Default
   - TransparentFX

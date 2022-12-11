@@ -9,7 +9,6 @@ using System;
 using UnityEngine;
 using TMPro;
 
-
 public class CollisionOfProjectile : MonoBehaviour
 {
 
@@ -18,9 +17,9 @@ public class CollisionOfProjectile : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip wallSound, goalSound, handSound;
     private string path;
+    private ProjectileLogger logger;
 
     private ScoreManager sm;
-    private PathGenerator pg;
     
     private bool gotInGoal = false;
     public bool tutorial = false;
@@ -30,18 +29,19 @@ public class CollisionOfProjectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if(!tutorial){
         scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
-        pg = GameObject.Find("XR Origin").GetComponent<PathGenerator>();
+        logger = GameObject.Find("XR Origin").GetComponent<ProjectileLogger>();
         sm = GameObject.Find("ScoreText").GetComponent<ScoreManager>();
-        using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
-        {writetext.WriteLine("New Projectile Created : " + gameObject.GetInstanceID().ToString());}
+        logger.projectileFiredTime = Time.time.ToString();
         Invoke("DestroyAndCheckScore", 6.0f);
         }
     }
 
     void DestroyAndCheckScore(){
         if(gotInGoal){
+            logger.deflected = "FALSE";
             sm.score--;
         }else{
+            logger.deflected = "TRUE";
             sm.score++;
         }
         sm.ScoreDisplay();
@@ -55,25 +55,32 @@ public class CollisionOfProjectile : MonoBehaviour
 
         switch(col.gameObject.tag){
             case "Right Hand":
+            if(!tutorial){
+                logger.rHandCollision = true;
+                logger.rCollisionTime = Time.time.ToString();
+            }
+            audioSource.PlayOneShot(handSound);
+            break;
+
             case "Left Hand":
             if(!tutorial){
-            using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
-            {writetext.WriteLine(gameObject.GetInstanceID().ToString() + " -- " + "Deflected: " + col.gameObject.tag);}
+                logger.lHandCollision = true;
+                logger.lCollisionTime = Time.time.ToString();
             }
             audioSource.PlayOneShot(handSound);
             break;
 
             case "Goal":
-            Debug.Log("Goal");
+            logger.projectilePassedTime = Time.time.ToString();
             gotInGoal = true;
-            using(StreamWriter writetext = new StreamWriter(pg.getPath(), true))
-            {writetext.WriteLine(gameObject.GetInstanceID().ToString() + " -- " + "Not Deflected: " + col.gameObject.tag);}
             audioSource.PlayOneShot(goalSound);
             break;
 
 
             case "Wall":
             case "Untagged":
+            logger.wallCollision = true;
+            logger.wallCollisionTime = Time.time.ToString();
             audioSource.PlayOneShot(wallSound);
             break;
             
