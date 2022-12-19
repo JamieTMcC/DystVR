@@ -29,6 +29,8 @@ TagManager:
   - ResetButton
   - FPSCounter
   - TrueAimCylinder
+  - GroupAButton
+  - GroupBButton
   layers:
   - Default
   - TransparentFX

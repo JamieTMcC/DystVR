@@ -38,14 +38,15 @@ public class ButtonPress : MonoBehaviour
 
 
     void OnTriggerEnter(Collider col){
+        Debug.Log("Button Pressed: " + col.gameObject.tag);
         
         var buttonRenderer = col.gameObject.transform.GetComponent<Renderer>();
         switch(col.gameObject.tag){
             case "SceneSwitchButton":
                 if(SceneManager.GetActiveScene().name == "ProjectileBlockerModified"){
                     SceneManager.LoadScene(sceneName:"PistolGameModified");
-                }else if(SceneManager.GetActiveScene().name == "PistolGameUnmodified"){
-                    SceneManager.LoadScene(sceneName:"ProjectileBlockerUnmodified");
+                }else if(SceneManager.GetActiveScene().name == "ProjectileBlockerUnmodified"){
+                    SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
                 }
                 break;
             case "StartButton":
@@ -91,6 +92,15 @@ public class ButtonPress : MonoBehaviour
                     PaddleR.SetActive(false);
                     DebugText.text = "";
                 }
+                break;
+
+            case "GroupAButton":
+            //group A is the unmodified group
+                SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+                break;
+            case "GroupBButton":
+            //group B is the modified group
+                SceneManager.LoadScene(sceneName:"PistolGameModified");
                 break;
             case "OutOfBounds":
                 XROrigin.transform.position = startPosition;

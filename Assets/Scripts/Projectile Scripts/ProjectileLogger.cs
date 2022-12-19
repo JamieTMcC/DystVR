@@ -38,7 +38,7 @@ public class ProjectileLogger : MonoBehaviour
         "," + setNumber.ToString() + "," + projectileNumber.ToString() +
         "," + rHandCollision.ToString() + "," + lHandCollision.ToString() + "," + wallCollision.ToString() + "," + goalCollision.ToString() +
         "," + rCollisionTime + "," + lCollisionTime + "," + wallCollisionTime + "," + goalCollisionTime +
-        "," + deflected + "," + projectileFiredTime + "," +
+        "," + deflected + "," + projectileFiredTime +
         "," + colliderSize + "," + originalColliderSize + ",");
     
     if(stopLogging)writetext.Close();
@@ -51,6 +51,7 @@ public class ProjectileLogger : MonoBehaviour
         rHandCollision = false;
         lHandCollision = false;
         wallCollision = false;
+        goalCollision = false;
         rCollisionTime = "";
         lCollisionTime = "";
         wallCollisionTime = "";

@@ -40,7 +40,6 @@ public class CollideAndDestroy : MonoBehaviour
             AssistButton = GameObject.FindWithTag("AssistButton");
             DebugButton = GameObject.FindWithTag("DebugButton");
             FPSCounter = GameObject.FindWithTag("FPSCounter");
-            FPSCounter.SetActive(false);
         }
     }
 
@@ -65,13 +64,13 @@ public class CollideAndDestroy : MonoBehaviour
             return;
         }
 
-        if(collision.gameObject.tag == "SceneSwitchButton") 
-        {
+        if(collision.gameObject.tag == "SceneSwitchButton"){
+            
                 if(SceneManager.GetActiveScene().name == "PistolGameModified"){
                     SceneManager.LoadScene(sceneName:"ProjectileBlockerModified");
                 }
-                else if(SceneManager.GetActiveScene().name == "ProjectileBlockerUnmodified"){
-                    SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+                else if(SceneManager.GetActiveScene().name == "PistolGameUnmodified"){
+                    SceneManager.LoadScene(sceneName:"ProjectileBlockerUnmodified");
                 }
         }
 

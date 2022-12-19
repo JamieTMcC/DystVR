@@ -10,7 +10,7 @@ public class TutorialScript : MonoBehaviour
     public float waitTime = 0.75f;
     public LookingAtTarget lookingAtTarget;
     public AtTargetZone atTargetZone;
-    public GameObject target, tutorialZone, tableandgun, tableAndBalls, continueButton, resetButton;
+    public GameObject target, tutorialZone, tableandgun, tableAndBalls, continueButton, resetButton, groupButton;
     CollideAndDestroy collideAndDestroy;
     Vector3[] positions1 = new Vector3[4];
     Vector3[] positions2 = new Vector3[4];
@@ -169,17 +169,15 @@ public class TutorialScript : MonoBehaviour
                     RHand.GetComponent<ButtonPress>().reset = false;
                 }
             }
+            Destroy(ContButton);
+            Destroy(ResetButton);
             Destroy(tandb);
             
             yield return UpdateTutorial("The proper game will involve balls which move with velocity towards you...");
             yield return UpdateTutorial("and a goal which you must protect");
-            yield return UpdateTutorial("Tutorial Complete - Moving to Shooting Game");
-
-            if(tutorialformodifiedgame){
-                SceneManager.LoadScene(sceneName:"PistolGameModified");
-            }else{
-                SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
-            }
+            yield return UpdateTutorial("Tutorial Complete");
+            tutorialText.text = "Select what group you are in to continue to the shooting game";
+            Instantiate(groupButton);
     
     }
 
