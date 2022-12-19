@@ -8,32 +8,37 @@ public class ProjectileLogger : MonoBehaviour
     private PathGenerator pg;
     public StreamWriter writetext;
     public int setNumber, projectileNumber;
-    public bool rHandCollision, lHandCollision, wallCollision;
-    public string rCollisionTime, lCollisionTime, wallCollisionTime;
+    public bool rHandCollision, lHandCollision, wallCollision, goalCollision;
+    public string rCollisionTime, lCollisionTime, wallCollisionTime, goalCollisionTime;
     public string deflected;
-    public string projectileFiredTime, projectilePassedTime;
+    public string projectileFiredTime;
     public string colliderSize, originalColliderSize;
     public bool startLogging,stopLogging;
+    public bool tutorial;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(!tutorial){
         pg = gameObject.GetComponent<PathGenerator>();
         Invoke("GetPath", 1f);
+        }
     }
 
     void GetPath(){
         writetext = new StreamWriter(pg.getPath());
-        Log("Time, Set Number, Projectile Number, Right Hand Collision, Left Hand Collision, Wall Collision, Right Collision Time, Left Collision Time, Wall Collision Time, Deflected, Projectile Fired Time, Projectile Passed Time, Collider Size, Original Collider Size,");
+        Log("Time, Set Number, Projectile Number, Right Hand Collision, Left Hand Collision, Wall Collision, Goal Collision, Right Hand Collision Time, Left Hand Collision Time, Wall Collision Time, Goal Collision Time, Deflected, Projectile Fired Time, Collider Size, Original Collider Size");
     }
 
    void Update(){
+    if(tutorial)
+        enabled = false;
     if (startLogging)
         Log(Time.time.ToString() + 
         "," + setNumber.ToString() + "," + projectileNumber.ToString() +
-        "," + rHandCollision.ToString() + "," + lHandCollision.ToString() + "," + wallCollision.ToString() +
-        "," + rCollisionTime + "," + lCollisionTime + "," + wallCollisionTime +
-        "," + deflected + "," + projectileFiredTime + "," + projectilePassedTime +
+        "," + rHandCollision.ToString() + "," + lHandCollision.ToString() + "," + wallCollision.ToString() + "," + goalCollision.ToString() +
+        "," + rCollisionTime + "," + lCollisionTime + "," + wallCollisionTime + "," + goalCollisionTime +
+        "," + deflected + "," + projectileFiredTime + "," +
         "," + colliderSize + "," + originalColliderSize + ",");
     
     if(stopLogging)writetext.Close();
@@ -49,8 +54,8 @@ public class ProjectileLogger : MonoBehaviour
         rCollisionTime = "";
         lCollisionTime = "";
         wallCollisionTime = "";
+        goalCollisionTime = "";
         deflected = "";
         projectileFiredTime="";
-        projectilePassedTime="";
     }
 }

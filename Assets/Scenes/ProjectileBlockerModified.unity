@@ -4122,6 +4122,8 @@ MonoBehaviour:
   timeDelay: 5
   PaddleL: {fileID: 1470858176}
   PaddleR: {fileID: 242246558}
+  AssistMode: 1
+  DebugMode: 0
 --- !u!4 &1446486112
 Transform:
   m_ObjectHideFlags: 0

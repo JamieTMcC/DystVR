@@ -26,10 +26,11 @@ public class CollisionOfProjectile : MonoBehaviour
 
 
     void Start(){
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();        
+        logger = GameObject.Find("XR Origin").GetComponent<ProjectileLogger>();
+
         if(!tutorial){
         scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
-        logger = GameObject.Find("XR Origin").GetComponent<ProjectileLogger>();
         sm = GameObject.Find("ScoreText").GetComponent<ScoreManager>();
         logger.projectileFiredTime = Time.time.ToString();
         Invoke("DestroyAndCheckScore", 6.0f);
@@ -71,7 +72,8 @@ public class CollisionOfProjectile : MonoBehaviour
             break;
 
             case "Goal":
-            logger.projectilePassedTime = Time.time.ToString();
+            logger.goalCollision = true;
+            logger.goalCollisionTime = Time.time.ToString();
             gotInGoal = true;
             audioSource.PlayOneShot(goalSound);
             break;

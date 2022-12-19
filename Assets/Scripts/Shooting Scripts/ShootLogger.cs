@@ -12,12 +12,15 @@ public class ShootLogger : MonoBehaviour
     public string trueshot,falseshot,aimCylinderSize,defaultAimCylinderSize;
     public string targetFiredTime, targetHitTime;
     public bool aimCylinderActive,startLogging,stopLogging;
+    public bool tutorial;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(!tutorial){
         pg = gameObject.GetComponent<PathGenerator>();
         Invoke("GetPath", 1f);
+        }
     }
 
     void GetPath(){
@@ -26,6 +29,9 @@ public class ShootLogger : MonoBehaviour
     }
 
    void Update(){
+    if(tutorial)
+        enabled = false;
+
     if (startLogging)
         Log(Time.time.ToString() + 
         "," + setNumber.ToString() + "," + targetNumber.ToString() + 

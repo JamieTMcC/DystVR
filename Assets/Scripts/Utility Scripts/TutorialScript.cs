@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class TutorialScript : MonoBehaviour
 {
+    public bool tutorialformodifiedgame;
     public TMP_Text tutorialText, continueText;
     public float waitTime = 0.75f;
     public LookingAtTarget lookingAtTarget;
@@ -173,8 +174,12 @@ public class TutorialScript : MonoBehaviour
             yield return UpdateTutorial("The proper game will involve balls which move with velocity towards you...");
             yield return UpdateTutorial("and a goal which you must protect");
             yield return UpdateTutorial("Tutorial Complete - Moving to Shooting Game");
-            
-            SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+
+            if(tutorialformodifiedgame){
+                SceneManager.LoadScene(sceneName:"PistolGameModified");
+            }else{
+                SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+            }
     
     }
 

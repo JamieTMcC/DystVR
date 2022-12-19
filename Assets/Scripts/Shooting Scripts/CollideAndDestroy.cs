@@ -65,7 +65,15 @@ public class CollideAndDestroy : MonoBehaviour
             return;
         }
 
-        if(collision.gameObject.tag == "SceneSwitchButton") SceneManager.LoadScene(sceneName:"ProjectileBlocker");
+        if(collision.gameObject.tag == "SceneSwitchButton") 
+        {
+                if(SceneManager.GetActiveScene().name == "PistolGameModified"){
+                    SceneManager.LoadScene(sceneName:"ProjectileBlockerModified");
+                }
+                else if(SceneManager.GetActiveScene().name == "ProjectileBlockerUnmodified"){
+                    SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+                }
+        }
 
         if(collision.gameObject.tag == "AssistButton" ^ collision.gameObject.tag == "DebugButton"){
             /*ButtonRenderer allows us to alter the material of an object

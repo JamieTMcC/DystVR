@@ -2754,6 +2754,8 @@ MonoBehaviour:
   fireSpeed: 20
   rateOfFire: 3
   timeDelay: 5
+  assistMode: 1
+  debugMode: 0
 --- !u!1 &1502325578
 GameObject:
   m_ObjectHideFlags: 0

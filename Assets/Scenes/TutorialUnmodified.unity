@@ -2781,6 +2781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733909dd096a17d4cb5cf8331bab2548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialformodifiedgame: 0
   tutorialText: {fileID: 1353510774}
   continueText: {fileID: 1734792591}
   waitTime: 1.5

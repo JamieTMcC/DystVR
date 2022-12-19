@@ -42,12 +42,17 @@ public class ButtonPress : MonoBehaviour
         var buttonRenderer = col.gameObject.transform.GetComponent<Renderer>();
         switch(col.gameObject.tag){
             case "SceneSwitchButton":
-                SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+                if(SceneManager.GetActiveScene().name == "ProjectileBlockerModified"){
+                    SceneManager.LoadScene(sceneName:"PistolGameModified");
+                }else if(SceneManager.GetActiveScene().name == "PistolGameUnmodified"){
+                    SceneManager.LoadScene(sceneName:"ProjectileBlockerUnmodified");
+                }
                 break;
             case "StartButton":
                 FireBall script = cannon.GetComponent<FireBall>();
                 buttons.SetActive(false);
                 XROrigin.transform.position = startPosition;
+                Debug.Log("Assist Mode: " + assistMode + " Debug Mode: " + debugMode);
                 script.main(assistMode,debugMode);
                 break;
             case "AssistButton":

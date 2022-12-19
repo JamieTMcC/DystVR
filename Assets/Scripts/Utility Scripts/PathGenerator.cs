@@ -25,12 +25,8 @@ public class PathGenerator : MonoBehaviour
         if(!Directory.Exists(path)){
             Directory.CreateDirectory(path);
         }
-
-        if(SceneManager.GetActiveScene().name == "ProjectileBlocker"){
-            path += "ProjectileGame/";
-        }else if(SceneManager.GetActiveScene().name == "PistolGameUnmodified"){
-            path += "PistolGame/";
-        }
+        
+        path += SceneManager.GetActiveScene().name + "/";
         
         if(!Directory.Exists(path)){
             Directory.CreateDirectory(path);

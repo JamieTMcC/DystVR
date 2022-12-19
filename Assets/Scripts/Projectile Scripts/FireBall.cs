@@ -24,7 +24,7 @@ public class FireBall : MonoBehaviour
     private GameObject buttons;
     private BoxCollider BlockerL,BlockerR;
     public GameObject PaddleL,PaddleR;
-    private bool AssistMode,DebugMode;
+    public bool AssistMode,DebugMode;
     private TMP_Text DebugText,timerText;
     private ProjectileLogger logger;
 
@@ -44,8 +44,6 @@ public class FireBall : MonoBehaviour
 
 
     public void main(bool AssistMode, bool DebugMode){
-        this.AssistMode = AssistMode;
-        this.DebugMode = DebugMode;
         StartCoroutine(FireBalls());
     }
 
@@ -55,6 +53,7 @@ public class FireBall : MonoBehaviour
         BlockerR.isTrigger = false;
         float scaleChange = 1.5f/numberOfSets;
         Vector3 OriginalSize = BlockerL.size;
+        logger.originalColliderSize = BlockerL.size.x.ToString() + " " + BlockerL.size.y.ToString() + " " + BlockerL.size.z.ToString();
 
         //waits 3 seconds before firing
         yield return new WaitForSeconds(3);
@@ -91,16 +90,19 @@ public class FireBall : MonoBehaviour
 
 
     void ModeActions(float scaleChange,Vector3 OriginalSize){
+        Debug.Log("Mode Actions");
+        Debug.Log("AssistMode:" + AssistMode);
+        Debug.Log("DebugMode:" + DebugMode);
         if(AssistMode){
             Debug.Log("Assist Mode is On");
             BlockerL.size += new Vector3(OriginalSize.x*scaleChange,OriginalSize.y*scaleChange,OriginalSize.z*scaleChange);
             BlockerR.size =  BlockerL.size;
+            logger.colliderSize = BlockerL.size.x.ToString() + " " + BlockerL.size.y.ToString() + " " + BlockerL.size.z.ToString();
             Debug.Log(OriginalSize*scaleChange);
             if(DebugMode){
                 DebugText.text += "Hand Blocker size: " + BlockerL.size.ToString() + "\n";
                 PaddleL.gameObject.transform.localScale = BlockerL.size;
                 PaddleR.gameObject.transform.localScale = BlockerL.size;
-
             }
         }
     }

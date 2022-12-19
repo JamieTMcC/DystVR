@@ -22,7 +22,7 @@ public class FireTarget : MonoBehaviour
     private AudioSource audioData;
     private GameObject buttons;
 
-    private bool assistMode,debugMode;
+    public bool assistMode,debugMode;
     private Vector3 originalSize;
     private TMP_Text debugText, timerText;
 
@@ -38,8 +38,6 @@ public class FireTarget : MonoBehaviour
 
 
     public void main(bool assistMode, bool debugMode){
-        this.assistMode = assistMode;
-        this.debugMode = debugMode;
         StartCoroutine(FireTargets());
     }
 

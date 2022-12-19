@@ -31,7 +31,6 @@ public class HitscanShooting : MonoBehaviour
         aimCollider = GameObject.FindWithTag("AimCylinder");
         trueAimCollider = GameObject.FindWithTag("TrueAimCylinder");
         aimCollider.SetActive(false);
-        trueAimCollider.SetActive(false);
         grabbable.activated.AddListener(Fire);
         firable = true;
         logger = GameObject.Find("XR Origin").GetComponent<ShootLogger>();
