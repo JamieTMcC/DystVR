@@ -9,18 +9,23 @@ public class ResetGunPosition : MonoBehaviour
 {
 
     private Vector3 startPosition;
+    private bool startReseting = false;
     public float speed = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
-        startPosition = transform.position;
-
+        Invoke("StartReset", 3f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position,startPosition,speed);
-        
+        if(startReseting)
+        transform.position = Vector3.MoveTowards(transform.position,startPosition,speed);   
+    }
+
+    void StartReset(){
+        startPosition = transform.position;
+        startReseting = true;
     }
 }
