@@ -2781,7 +2781,7 @@ MonoBehaviour:
 
     Balls will fly out from the cannon
     and you must deflect them with your hands so that they do not get past you. Their
-    will be 6 sets of 5 balls.
+    will be 6 sets of 10 balls.
 
 
     A ball let in: -1 point
@@ -4238,7 +4238,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1453412236
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4255,7 +4255,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1470858176
 GameObject:
   m_ObjectHideFlags: 0
@@ -4273,7 +4273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1470858177
 Transform:
   m_ObjectHideFlags: 0
@@ -4283,7 +4283,7 @@ Transform:
   m_GameObject: {fileID: 1470858176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.02, y: -0.0267, z: 0.0237}
-  m_LocalScale: {x: 0.04, y: 0.1, z: 0.12783001}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 771613754}

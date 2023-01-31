@@ -2781,7 +2781,7 @@ MonoBehaviour:
 
     Balls will fly out from the cannon
     and you must deflect them with your hands so that they do not get past you. Their
-    will be 6 sets of 5 balls.
+    will be 6 sets of 10 balls.
 
 
     A ball let in: -1 point
@@ -4122,6 +4122,8 @@ MonoBehaviour:
   timeDelay: 5
   PaddleL: {fileID: 1470858176}
   PaddleR: {fileID: 242246558}
+  AssistMode: 0
+  DebugMode: 0
 --- !u!4 &1446486112
 Transform:
   m_ObjectHideFlags: 0
@@ -4236,7 +4238,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1453412236
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4253,7 +4255,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1470858176
 GameObject:
   m_ObjectHideFlags: 0

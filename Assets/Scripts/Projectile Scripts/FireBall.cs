@@ -98,7 +98,7 @@ public class FireBall : MonoBehaviour
             BlockerL.size += new Vector3(OriginalSize.x*scaleChange,OriginalSize.y*scaleChange,OriginalSize.z*scaleChange);
             BlockerR.size =  BlockerL.size;
             logger.colliderSize = BlockerL.size.x.ToString() + " " + BlockerL.size.y.ToString() + " " + BlockerL.size.z.ToString();
-            Debug.Log(OriginalSize*scaleChange);
+            Debug.Log(BlockerL.size.ToString());
             if(DebugMode){
                 DebugText.text += "Hand Blocker size: " + BlockerL.size.ToString() + "\n";
                 PaddleL.gameObject.transform.localScale = BlockerL.size;
