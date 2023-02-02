@@ -44,9 +44,9 @@ public class ButtonPress : MonoBehaviour
         switch(col.gameObject.tag){
             case "SceneSwitchButton":
                 if(SceneManager.GetActiveScene().name == "ProjectileBlockerModified"){
-                    SceneManager.LoadScene(sceneName:"PistolGameModified");
-                }else if(SceneManager.GetActiveScene().name == "ProjectileBlockerUnmodified"){
                     SceneManager.LoadScene(sceneName:"PistolGameUnmodified");
+                }else if(SceneManager.GetActiveScene().name == "ProjectileBlockerUnmodified"){
+                    SceneManager.LoadScene(sceneName:"PistolGameModified");
                 }
                 break;
             case "StartButton":

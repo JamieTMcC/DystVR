@@ -12,15 +12,8 @@ public class TrueCollide : MonoBehaviour
     {
         logger = GameObject.Find("XR Origin").GetComponent<ShootLogger>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {   
-        Debug.Log(collisiontag);
-    }
- public void OnTriggerEnter(Collider collision) {
-
-        //not untagged is how we describe the different sections of the target
+    
+    public void OnTriggerEnter(Collider collision) {
         if(collision.gameObject.tag == "InnerRing" || collision.gameObject.tag == "Centre" || collision.gameObject.tag == "OuterRing"){
             collisiontag = collision.gameObject.tag;
             logger.trueshot = collision.gameObject.tag;

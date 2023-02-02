@@ -20,12 +20,15 @@ public class PathGenerator : MonoBehaviour
 
     void GenerateNewIteration()
     {  
+
         path = Application.persistentDataPath + "/experimentdata/";
 
         if(!Directory.Exists(path)){
             Directory.CreateDirectory(path);
         }
         
+        NoteScene();
+
         path += SceneManager.GetActiveScene().name + "/";
         
         if(!Directory.Exists(path)){
@@ -53,5 +56,24 @@ public class PathGenerator : MonoBehaviour
 
     public string getPath(){
         return path;
+    }
+
+    private void NoteScene(){
+        using(StreamWriter writetext = new StreamWriter(Application.persistentDataPath + "/experimentdata/scenes.txt", true)){
+            writetext.WriteLine(SceneManager.GetActiveScene().name);
+        }
+        //reads the number of lines in the file and prints it to the console
+        int lineCount = 0;
+        using(StreamReader readtext = new StreamReader(Application.persistentDataPath + "/experimentdata/scenes.txt")){
+            while(readtext.ReadLine() != null){
+                lineCount++;
+            }
+        }
+        Debug.Log(lineCount);
+        if(lineCount > 4){
+            //quit game if player has done all 4 scenes
+            Debug.Log("Games Quits Here");
+            Application.Quit();
+        }
     }
 }
