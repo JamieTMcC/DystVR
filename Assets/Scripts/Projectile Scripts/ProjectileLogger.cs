@@ -7,6 +7,7 @@ public class ProjectileLogger : MonoBehaviour
 {
     private PathGenerator pg;
     public StreamWriter writetext;
+    GameObject XROrigin;
     public int setNumber, projectileNumber;
     public bool rHandCollision, lHandCollision, wallCollision, goalCollision;
     public string rCollisionTime, lCollisionTime, wallCollisionTime, goalCollisionTime;
@@ -20,6 +21,7 @@ public class ProjectileLogger : MonoBehaviour
     void Start()
     {
         if(!tutorial){
+        XROrigin = GameObject.Find("XR Origin");
         pg = gameObject.GetComponent<PathGenerator>();
         Invoke("GetPath", 1f);
         }
@@ -27,19 +29,22 @@ public class ProjectileLogger : MonoBehaviour
 
     void GetPath(){
         writetext = new StreamWriter(pg.getPath());
-        Log("Time, Set Number, Projectile Number, Right Hand Collision, Left Hand Collision, Wall Collision, Goal Collision, Right Hand Collision Time, Left Hand Collision Time, Wall Collision Time, Goal Collision Time, Deflected, Projectile Fired Time, Collider Size, Original Collider Size");
+        Log("Time, Set Number, Projectile Number, xPos, zPos, Right Hand Collision, Left Hand Collision, Wall Collision, Goal Collision, Right Hand Collision Time, Left Hand Collision Time, Wall Collision Time, Goal Collision Time, Deflected, Projectile Fired Time, Collider Size, Original Collider Size");
     }
 
    void Update(){
     if(tutorial)
         enabled = false;
     if (startLogging)
+        
         Log(Time.time.ToString() + 
         "," + setNumber.ToString() + "," + projectileNumber.ToString() +
+        "," + XROrigin.transform.position.x.ToString() + "," + XROrigin.transform.position.z.ToString() +
         "," + rHandCollision.ToString() + "," + lHandCollision.ToString() + "," + wallCollision.ToString() + "," + goalCollision.ToString() +
         "," + rCollisionTime + "," + lCollisionTime + "," + wallCollisionTime + "," + goalCollisionTime +
         "," + deflected + "," + projectileFiredTime +
-        "," + colliderSize + "," + originalColliderSize + ",");
+        "," + colliderSize + "," + originalColliderSize +
+        ",");
     
     if(stopLogging)writetext.Close();
 
